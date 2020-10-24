@@ -26,6 +26,8 @@ namespace proiect_sah
                     return new Bishop(c);
                 case PieceType.Rook:
                     return new Rook(c);
+                case PieceType.Nopiece:
+                    return null;
 
                 default:
                     throw new ArgumentException($"do not exists {type}");
