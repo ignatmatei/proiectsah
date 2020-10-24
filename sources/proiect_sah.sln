@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_tabla", "test_tabla\te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sah", "sah\sah.csproj", "{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sah_web", "sah_web\sah_web.csproj", "{18E02016-27B8-4F8B-AC1B-64A7114D1BE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18E02016-27B8-4F8B-AC1B-64A7114D1BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E02016-27B8-4F8B-AC1B-64A7114D1BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E02016-27B8-4F8B-AC1B-64A7114D1BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E02016-27B8-4F8B-AC1B-64A7114D1BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -136,6 +136,8 @@ namespace proiect_sah
             table[1, 6] = PieceType.Bishop;
             table[1, 5] = PieceType.King;
             table[1, 4] = PieceType.Queen;
+            table[8, 4] = (PieceType)((int)Color.Black * (int)PieceType.Queen);
+            table[8, 5] = (PieceType)((int)Color.Black * (int)PieceType.King);
             table[8, 1] = (PieceType)((int)Color.Black * (int)PieceType.Rook);
             table[8, 8] = (PieceType)((int)Color.Black * (int)PieceType.Rook);
             table[8, 3] = (PieceType)((int)Color.Black * (int)PieceType.Bishop);

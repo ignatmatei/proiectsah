@@ -1,0 +1,59 @@
+﻿@model proiect_sah.Board
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div>
+    <h4>Board</h4>
+    <hr />
+    <dl class="row">
+    </dl>
+</div>
+<div>
+<table style ="width:100%" border="4">
+    @{ 
+        for (int i = 8; i >= 1; i--)
+        {
+        <tr>
+            <td>
+                @i
+            </td>
+            @{
+                for (int m = 1; m <= 8; m++)
+                {
+                   <td>
+                       
+                       @{
+                           var p = Model.GetPieceFrom(i, (proiect_sah.column)m);
+                           if(p!= null)
+                           {
+                               <text>@p.pieceType</text>
+                           }
+                       }
+                   </td>
+                }  
+                }
+        </tr>
+        }
+     }
+    
+    <tr>
+        <td>
+
+        </td>
+        @{ 
+            for (char j = 'A'; j <='H'; j++)
+            {
+                <td>
+                    @j
+                </td>
+            }
+
+        }
+    </tr>
+      
+    </table>
+</div>

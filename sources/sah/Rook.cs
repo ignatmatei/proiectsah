@@ -9,7 +9,7 @@ namespace proiect_sah
         public Rook(Color c)
         {
             this.Color = c;
-            this.pieceType = PieceType.Bishop;
+            this.pieceType = PieceType.Rook;
         }
         int[,] AllLegalMoves = new int[9, 9];
         public override int[,] Moves(int starti, column startj)
