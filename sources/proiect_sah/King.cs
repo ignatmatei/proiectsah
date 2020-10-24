@@ -8,10 +8,11 @@ namespace proiect_sah
 {
    public  class King : Piece
     {
-        public King()
+        public King(Color c)
         {
             //de fiecare data cnd new King()
             base.pieceType = PieceType.King;
+            this.Color = c;
         }
 
         static King()

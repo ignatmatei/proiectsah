@@ -9,14 +9,14 @@ namespace proiect_sah
         public PieceType pieceType { get; protected set; }
         public abstract int[,] Moves(int starti, column startj);
 
-        public static Piece GetPieceFromPieceType(PieceType type)
+        public static Piece GetPieceFromPieceType(PieceType type, Color c) 
         {
             switch (type)
             {
                 case PieceType.King:
                     return new King();
                 case PieceType.Pawn:
-                    return new Pawn();
+                    return new Pawn(c);
                 case PieceType.Knight:
                     return new Knight();
                 case PieceType.Queen:

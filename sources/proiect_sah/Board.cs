@@ -24,7 +24,11 @@ namespace proiect_sah
     {
         public bool IsLegal (int pozi_init, column pozj_init, int pozi_final, column pozj_final)
         {
-            var p = Piece.GetPieceFromPieceType(table[pozi_init, (int)pozj_init]);
+            var piesa = table[pozi_init, (int)pozj_init];
+            Color c = Color.White;
+            if (piesa < 0)
+                c = Color.Black;
+            var p = Piece.GetPieceFromPieceType(piesa, c);
             var moves = p.Moves(pozi_init, pozj_init);
             if (moves[pozi_init, (int)pozj_init] == 1) return true;
             return false;

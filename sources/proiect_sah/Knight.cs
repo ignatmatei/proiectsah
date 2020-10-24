@@ -26,6 +26,7 @@ namespace proiect_sah
             dj[7] = 1;
 
         }
+        
         static int[] di = new int[8];
         static int[] dj = new int[8];
         private bool isOK(int i, int j)
