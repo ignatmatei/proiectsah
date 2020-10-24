@@ -20,16 +20,23 @@ namespace proiect_sah
     /// black = -1
     /// </summary>
 
-    class Board
+    public class Board
     {
-        
-        public bool IsLegal (int pozi_init, column pozj_init, int pozi_final, column pozj_final)
+        public Piece GetPieceFrom(int line, column col)
         {
-            var piesa = table[pozi_init, (int)pozj_init];
+            var piesa = table[line, (int)col];
             Color c = Color.White;
             if (piesa < 0)
                 c = Color.Black;
             var p = Piece.GetPieceFromPieceType(piesa, c);
+            return p;
+        }
+        
+        public bool IsLegal (int pozi_init, column pozj_init, int pozi_final, column pozj_final)
+        {
+            
+            var p = GetPieceFrom(pozi_init, pozj_init);
+            Color c = p.Color;
             var pawn = new Pawn(c); 
             var moves = p.Moves(pozi_init, pozj_init);
             if (p == pawn)
@@ -77,7 +84,7 @@ namespace proiect_sah
             for (var i = 1; i <= 8; i++)
             { 
                 table[2, i] = PieceType.Pawn;
-                table[7, i] =(PieceType)((int) Color.Black * (int) PieceType.Pawn);
+                table[7, i] = (PieceType)((int) Color.Black * (int)PieceType.Pawn);
                 
             }
             table[1, 2] = PieceType.Knight;

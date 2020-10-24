@@ -5,11 +5,12 @@ using System.Text;
 
 namespace proiect_sah
 {
-    class Pawn : Piece
+    public class Pawn : Piece
     {
         public Pawn(Color c ):base()
         {
             this.Color = c;
+            this.pieceType = PieceType.Pawn;
 
         }
         private bool isOK(int i, int j)

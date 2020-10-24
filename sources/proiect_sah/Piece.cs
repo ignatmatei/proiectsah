@@ -11,7 +11,8 @@ namespace proiect_sah
 
         public static Piece GetPieceFromPieceType(PieceType type, Color c) 
         {
-            switch (type)
+            var type1 = (PieceType)Math.Abs((int)type);
+            switch (type1)
             {
                 case PieceType.King:
                     return new King(c);

@@ -8,7 +8,8 @@ namespace proiect_sah
     {
         public Knight(Color c)
         {
-            this.Color = c; 
+            this.Color = c;
+            this.pieceType = PieceType.Knight;
         }
         static Knight()
         {

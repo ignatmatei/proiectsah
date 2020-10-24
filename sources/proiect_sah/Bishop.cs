@@ -4,7 +4,7 @@ using System.Text;
 
 namespace proiect_sah
 {
-    class Bishop : Piece
+    public class Bishop : Piece
     {
         public Bishop(Color c)
         {

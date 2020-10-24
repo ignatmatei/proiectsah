@@ -4,7 +4,7 @@ using System.Text;
 
 namespace proiect_sah
 {
-    class XoY
+   public class XoY
     {
         public int x;
         public column y;

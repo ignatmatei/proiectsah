@@ -4,12 +4,12 @@ using System.Text;
 
 namespace proiect_sah
 {
-    class Rook : Piece
+   public class Rook : Piece
     {
         public Rook(Color c)
         {
             this.Color = c;
-
+            this.pieceType = PieceType.Bishop;
         }
         int[,] AllLegalMoves = new int[9, 9];
         public override int[,] Moves(int starti, column startj)
