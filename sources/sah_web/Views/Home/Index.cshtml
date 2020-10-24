@@ -13,6 +13,7 @@
     </dl>
 </div>
 <div>
+    
 <table style ="width:100%" border="4">
     @{ 
         for (int i = 8; i >= 1; i--)
@@ -24,16 +25,24 @@
             @{
                 for (int m = 1; m <= 8; m++)
                 {
-                   <td>
-                       
-                       @{
-                           var p = Model.GetPieceFrom(i, (proiect_sah.column)m);
-                           if(p!= null)
-                           {
-                               <text>@p.pieceType</text>
-                           }
-                       }
-                   </td>
+                        <td>
+
+
+
+                            @{
+                                var p = Model.GetPieceFrom(i, (proiect_sah.column)m);
+                                if (p != null)
+                                {
+                                    string numeImagine = p.pieceType + ((int)p.Color).ToString();
+
+                                    <text>@p.pieceType
+
+                                    <img src="~/Images/@(numeImagine).png" style="width : 10%" />
+
+                                    </text>
+                                }
+                            }
+                        </td>
                 }  
                 }
         </tr>

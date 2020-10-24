@@ -12,4 +12,8 @@
     <ProjectReference Include="..\sah\sah.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
 </Project>
