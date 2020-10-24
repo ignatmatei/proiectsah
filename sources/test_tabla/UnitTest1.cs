@@ -55,6 +55,10 @@ namespace test_tabla
             Assert.Equal(PieceType.Pawn, pion.pieceType);
             Assert.Null(nimic);
         }
+        public void ImposibilQueen ()
+        {
+            Board n = new Board();
+        }
 
     }
 }

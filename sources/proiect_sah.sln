@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proiect_sah", "proiect_sah\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_tabla", "test_tabla\test_tabla.csproj", "{D25BEE3F-482D-4FF6-9370-F8BC7309303A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sah", "sah\sah.csproj", "{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D25BEE3F-482D-4FF6-9370-F8BC7309303A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25BEE3F-482D-4FF6-9370-F8BC7309303A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25BEE3F-482D-4FF6-9370-F8BC7309303A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

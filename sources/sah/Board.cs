@@ -31,7 +31,44 @@ namespace proiect_sah
             var p = Piece.GetPieceFromPieceType(piesa, c);
             return p;
         }
-        
+       /* public bool IsValid (int i, int k int pas,int[,]p)
+        {
+            if (pas > 1)
+                return false;
+            return true;
+        }
+        /*void bkKing(int starti, int startj, int fini, int finj, int[,] p, int pas)
+        {
+            bool HasArrived = false;
+             int[] di = new int[8];
+             int[] dj = new int[8];
+            for (int i = 0; i <= 7; i++)
+            {
+                if (i < 2) di[i] = 0;
+                if (i >= 2 && i <= 4) di[i] = 1;
+                if (i > 4) di[i] = -1;
+            }
+            dj[0] = 1;
+            dj[1] = -1;
+            dj[2] = -1;
+            dj[3] = 0;
+            dj[4] = 1;
+            dj[5] = -1;
+            dj[6] = 0;
+            dj[7] = 1;
+            if (starti == fini && startj == finj)
+                HasArrived = true;
+            else
+            {
+                int directii;
+                for (directii = 0; directii < 4; directii++)
+                {
+                    int next_i = starti + di[directii];
+                    int next_j = startj + dj[directii];
+                    if()
+                }
+            }
+        }*/
         public bool IsLegal (int pozi_init, column pozj_init, int pozi_final, column pozj_final)
         {
             
@@ -39,6 +76,7 @@ namespace proiect_sah
             Color c = p.Color;
             var pawn = new Pawn(c); 
             var moves = p.Moves(pozi_init, pozj_init);
+            
             if (p == pawn)
             {
                 var enemypiece1 = table[pozi_init + 1, (int)pozj_init - 1];
@@ -74,6 +112,7 @@ namespace proiect_sah
                 table[pozi_init, (int)pozj_init] = PieceType.Nopiece;
                 table[pozi_final, (int)pozj_final] = currpiece;
             }
+            throw new Exception("piesa nu se poate muta");
         }
         public PieceType[,]            table=new PieceType[9,9];
 
