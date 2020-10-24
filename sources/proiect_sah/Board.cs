@@ -22,6 +22,7 @@ namespace proiect_sah
 
     class Board
     {
+        
         public bool IsLegal (int pozi_init, column pozj_init, int pozi_final, column pozj_final)
         {
             var piesa = table[pozi_init, (int)pozj_init];
@@ -29,8 +30,29 @@ namespace proiect_sah
             if (piesa < 0)
                 c = Color.Black;
             var p = Piece.GetPieceFromPieceType(piesa, c);
+            var pawn = new Pawn(c); 
             var moves = p.Moves(pozi_init, pozj_init);
-            if (moves[pozi_init, (int)pozj_init] == 1) return true;
+            if (p == pawn)
+            {
+                var enemypiece1 = table[pozi_init + 1, (int)pozj_init - 1];
+                var enemypiece2 = table[pozi_init + 1, (int)pozj_init + 1];
+                Color colorenemypiece1 = Color.White;
+                if (enemypiece1 < 0)
+                    colorenemypiece1 = Color.Black;
+                Color colorenemypiece2 = Color.White;
+                if (enemypiece2 < 0)
+                    colorenemypiece2 = Color.Black;
+                if (colorenemypiece1 != c)
+                {
+                    moves[pozi_init + 1, (int)pozj_init - 1] = 1;
+                }
+                if (colorenemypiece2 != c)
+                {
+                    moves[pozi_init + 1, (int)pozj_init + 1] = 1;
+                }
+
+            }
+            if (moves[pozi_final, (int)pozj_final] == 1) return true;
             return false;
 
 

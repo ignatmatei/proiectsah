@@ -14,17 +14,17 @@ namespace proiect_sah
             switch (type)
             {
                 case PieceType.King:
-                    return new King();
+                    return new King(c);
                 case PieceType.Pawn:
                     return new Pawn(c);
                 case PieceType.Knight:
-                    return new Knight();
+                    return new Knight(c);
                 case PieceType.Queen:
-                    return new Queen();
+                    return new Queen(c);
                 case PieceType.Bishop:
-                    return new Bishop();
+                    return new Bishop(c);
                 case PieceType.Rook:
-                    return new Rook();
+                    return new Rook(c);
 
                 default:
                     throw new ArgumentException($"do not exists {type}");

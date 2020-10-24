@@ -10,11 +10,6 @@ namespace proiect_sah
         }
         static void Main(string[] args)
         {
-            //var x = "ASDASDASD";
-            //var y= x.Replace("ASD", "ANDREI");
-            //Console.WriteLine(y);
-            //return;
-            King k = new King();
             
             var board = new Board();
             var currmove = "";

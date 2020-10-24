@@ -6,6 +6,10 @@ namespace proiect_sah
 {
     public class Knight : Piece
     {
+        public Knight(Color c)
+        {
+            this.Color = c; 
+        }
         static Knight()
         {
             di[0] = -1;

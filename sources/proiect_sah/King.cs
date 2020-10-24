@@ -13,6 +13,7 @@ namespace proiect_sah
             //de fiecare data cnd new King()
             base.pieceType = PieceType.King;
             this.Color = c;
+            bool HasKingMoved = false;
         }
 
         static King()
