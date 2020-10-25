@@ -33,5 +33,10 @@ jobs:
       run: |   
         cd sources
         cd sah_web
-        dotnet publish --configuration Release  -r win-x64 --self-contained -o sahweb -p:PublishSingleFile=true -p:PublishTrimmed=true
+        dotnet publish --configuration Release  -r win-x64 --self-contained -o sahwebOutput -p:PublishSingleFile=true -p:PublishTrimmed=true
         ls -lh
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: proiectSah
+        path: sources/sah_web/sahwebOutput
