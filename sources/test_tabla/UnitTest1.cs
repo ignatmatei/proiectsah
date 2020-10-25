@@ -76,6 +76,20 @@ namespace test_tabla
             n.MovePiece(1, column.A, 6, column.A)
            );
         }
-
+        [Fact]
+        public void ImposibilKnight()
+        {
+            Board n = new Board();
+            Assert.Throws<Exception>(
+                () =>
+            n.MovePiece(1, column.B, 2, column.D)
+           );
+        }
+        [Fact]
+        public void PosibilKnight ()
+        {
+            Board n = new Board();
+            Assert.True(n.IsLegal(1, column.B, 3, column.C));
+        }
     }
 }

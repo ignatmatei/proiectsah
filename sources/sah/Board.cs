@@ -108,7 +108,7 @@ namespace proiect_sah
                     if (piece.pieceType == PieceType.King)
                     {
                         var opozitie = GetPieceFrom(pozi_final, pozj_final);
-                        if (opozitie.pieceType != PieceType.Nopiece)
+                        if (opozitie != null)
                             if (piece.Color == opozitie.Color)
                                 return false;
                         return true;
@@ -148,6 +148,14 @@ namespace proiect_sah
                             return false;
                         return true;
 
+                    }
+                    if (piece.pieceType == PieceType.Knight)
+                    {
+                        var opozitiecal = GetPieceFrom(pozi_final, pozj_final);
+                        if (opozitiecal != null)
+                            if (piece.Color == opozitiecal.Color)
+                                return false;
+                        return true;
                     }
                 }
                 return false;
