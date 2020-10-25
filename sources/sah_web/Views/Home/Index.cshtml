@@ -26,23 +26,24 @@
                         @i
                     </td>
                     @{
-                        for (int m = 1; m <= 8; m++)
+                        for (char m = 'A'; m <= 'H'; m++)
                         {
-                            <td>
+                            <td id="@(m)@(i)">
 
-
+                                
 
                                 @{
-                                    var p = board.GetPieceFrom(i, (proiect_sah.column)m);
+                                    var p = board.GetPieceFrom(i, (proiect_sah.column)((int)m-64));
                                     if (p != null)
                                     {
+
                                         string numeImagine = p.pieceType + ((int)p.Color).ToString();
+                                                                <span id="piesa">
+                                                                    @p.pieceType
 
-                                        <text>@p.pieceType
+                                                                    <img src="~/Images/@(numeImagine).png" style="width : 10%" />
 
-                                        <img src="~/Images/@(numeImagine).png" style="width : 10%" />
-
-                                        </text>
+                                                                </span>
                                     }
                                 }
                             </td>
@@ -72,11 +73,11 @@
        
     </h2>
     <div>
-        Introdu mutarea : ex d2 d4
+        Introdu mutarea : ex D2 D4
         <p>
 
         </p>
-        <input id="AllMoveWhite" />
+        <input id="AllMoveWhite" value="D2 D4" />
         <button onclick="javascript:MoveWhite()">
             Fin move
         </button>
@@ -97,6 +98,13 @@
                 window.alert('am primit raspuns' + data);
                 if (data) {
                     //TODO: executa mutare
+                    var oldparent = document.getElementById(arr[0]);
+                    console.log(oldparent);
+                    var piesa = oldparent.querySelector("#piesa");
+                    console.log(piesa);
+                    var newparent = document.getElementById(arr[1]);
+                    newparent.append(piesa);
+
                 }
                 else {
                     //spune-i ca nu se face mutarea

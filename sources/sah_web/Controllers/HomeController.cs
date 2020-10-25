@@ -14,6 +14,7 @@ namespace sah_web.Controllers
 {
     public class HomeController : Controller
     {
+        static Game G = new Game();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -23,7 +24,7 @@ namespace sah_web.Controllers
 
         public IActionResult Index()
         {
-            Game G = new Game();
+           
             G.PlayerWhite.color = Color.White;
             G.PlayerBlack.color = Color.Black;
             G.PlayerWhite.name = "Andrei";
@@ -33,6 +34,7 @@ namespace sah_web.Controllers
         //https://localhost:5001/Home/IsValid?first=e2&last=e4
         public bool IsValid(string first, string last)
         {
+            //G.board.IsLegal()
             return true;
         }
 
