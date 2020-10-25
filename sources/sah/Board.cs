@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Text;
@@ -16,10 +17,6 @@ namespace proiect_sah
         Queen = 9,
         King = 50 
     }
-    /// <summary>
-    /// white = 1
-    /// black = -1
-    /// </summary>
 
     public class Board
     {
@@ -32,44 +29,7 @@ namespace proiect_sah
             var p = Piece.GetPieceFromPieceType(piesa, c);
             return p;
         }
-       /* public bool IsValid (int i, int k int pas,int[,]p)
-        {
-            if (pas > 1)
-                return false;
-            return true;
-        }
-        /*void bkKing(int starti, int startj, int fini, int finj, int[,] p, int pas)
-        {
-            bool HasArrived = false;
-             int[] di = new int[8];
-             int[] dj = new int[8];
-            for (int i = 0; i <= 7; i++)
-            {
-                if (i < 2) di[i] = 0;
-                if (i >= 2 && i <= 4) di[i] = 1;
-                if (i > 4) di[i] = -1;
-            }
-            dj[0] = 1;
-            dj[1] = -1;
-            dj[2] = -1;
-            dj[3] = 0;
-            dj[4] = 1;
-            dj[5] = -1;
-            dj[6] = 0;
-            dj[7] = 1;
-            if (starti == fini && startj == finj)
-                HasArrived = true;
-            else
-            {
-                int directii;
-                for (directii = 0; directii < 4; directii++)
-                {
-                    int next_i = starti + di[directii];
-                    int next_j = startj + dj[directii];
-                    if()
-                }
-            }
-        }*/
+       
        public int min (int a, int b)
         {
             if (a < b) return a;
@@ -86,7 +46,25 @@ namespace proiect_sah
             var piece = GetPieceFrom(pozi_init, pozj_init);
             Color c = piece.Color;
             var moves = piece.Moves(pozi_init, pozj_init);
-           
+             if (piece.pieceType == PieceType.Pawn)
+            {
+                var pioninamic1 = table[pozi_init + 1, ((int)pozj_init) - 1];
+                var pioninamic2 = table[pozi_init + 1, ((int)pozj_init) + 1];
+                Color cul1 = Color.White; 
+                Color cul2 = Color.Black;
+                if(pioninamic1 < 0)
+                {
+                    cul1 = Color.Black;
+                }
+                if (pioninamic2 < 0)
+                {
+                    cul2 = Color.Black;
+                }
+                if (Math.Abs((int)pioninamic1)  == 1 && cul1 != c)
+                    moves[pozi_init + 1, ((int)pozj_init) - 1] = 1;
+                if(Math.Abs((int)pioninamic2) == 1 && cul2 != c)
+                    moves[pozi_init + 1, ((int)pozj_init) + 1] = 1;
+            }
             if (moves[pozi_final, (int)pozj_final] == 1)
                 {
                     if (piece.pieceType == PieceType.King)

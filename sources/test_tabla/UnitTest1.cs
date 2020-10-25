@@ -91,5 +91,12 @@ namespace test_tabla
             Board n = new Board();
             Assert.True(n.IsLegal(1, column.B, 3, column.C));
         }
+
+        [Fact]
+        public void ImposibilPawn ()
+        {
+            Board b = new Board();
+            Assert.False(b.IsLegal(2, column.A, 3, column.C));
+        }
     }
 }
