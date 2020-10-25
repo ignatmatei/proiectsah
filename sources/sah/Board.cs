@@ -70,6 +70,16 @@ namespace proiect_sah
                 }
             }
         }*/
+       public int min (int a, int b)
+        {
+            if (a < b) return a;
+            return b;
+        }
+        public int max(int a, int b)
+        {
+            if (a > b) return a;
+            return b;
+        }
         public bool IsLegal (int pozi_init, column pozj_init, int pozi_final, column pozj_final)
         {
             
@@ -103,15 +113,47 @@ namespace proiect_sah
                                 return false;
                         return true;
                     }
+                    if (piece.pieceType == PieceType.Rook)
+                    {
+                        if (pozi_init == pozi_final)
+                        {
+                            for (int i = min((int)pozj_init, (int)pozj_final); i < max((int)pozj_init, (int)pozj_final); i++)
+                                if (table[pozi_init, i] != PieceType.Nopiece)
+                                    return false;
+                            int j = max((int)pozj_init, (int)pozj_final);
+                            var fin = table[pozi_init, j];
+                            
+                            if (fin == 0)
+                                return true;
+                          
+                            Color c1 = Color.White;
+                            if (fin < 0)
+                                c1 = Color.Black;
+                            if (c1 == piece.Color)
+                                return false;
+                            return true;
+                          
 
+                        }
+                        for (int i = min(pozi_init, pozi_final); i < max(pozi_init,pozi_final); i++)
+                            if (table[i, (int)pozj_init] != PieceType.Nopiece)
+                                return false;
+                        int j1 = max(pozi_init, pozi_final);
+                        var fin1 = table[j1, (int)pozj_init];
+                        if (fin1 == 0) return true;
+                        Color c2 = Color.White;
+                        if (fin1 < 0)
+                            c2 = Color.Black;
+                        if (c2 == piece.Color)
+                            return false;
+                        return true;
 
+                    }
                 }
+                return false;
             }
-            return false;
-            
-
-
-            
+         
+               
           
         }
         public void MovePiece(int pozi_init, column pozj_init, int pozi_final, column pozj_final)

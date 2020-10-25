@@ -66,6 +66,16 @@ namespace test_tabla
            );
 
         }
+        [Fact]
+
+        public void ImposibilRook()
+        {
+            Board n = new Board();
+            Assert.Throws<Exception>(
+                () =>
+            n.MovePiece(1, column.A, 6, column.A)
+           );
+        }
 
     }
 }
