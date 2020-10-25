@@ -1,0 +1,30 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: | 
+        cd sources
+        dotnet restore
+        dotnet build --configuration Release --no-restore
+        cd test_tabla
+        dotnet test --no-restore --verbosity normal
+        cd ..
+        cd sah_web
+        dotnet publish --configuration Release  -r win-x64 --self-contained -o sahweb -p:PublishSingleFile=true -p:PublishTrimmed=true
+        ls -lh
