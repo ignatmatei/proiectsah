@@ -1,11 +1,14 @@
-﻿@model proiect_sah.Board
-
+﻿@model sah.Game
 @{
     ViewData["Title"] = "Index";
+    var board = Model.board;
+
 }
 
 <h1>Index</h1>
-
+<h2>
+@Model.PlayerBlack.name
+</h2>
 <div>
     <h4>Board</h4>
     <hr />
@@ -13,56 +16,58 @@
     </dl>
 </div>
 <div>
-    
-<table style ="width:100%" border="4">
-    @{ 
-        for (int i = 8; i >= 1; i--)
-        {
+
+    <table style="width:100%" border="4">
+        @{
+            for (int i = 8; i >= 1; i--)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    @{
+                        for (int m = 1; m <= 8; m++)
+                        {
+                            <td>
+
+
+
+                                @{
+                                    var p = board.GetPieceFrom(i, (proiect_sah.column)m);
+                                    if (p != null)
+                                    {
+                                        string numeImagine = p.pieceType + ((int)p.Color).ToString();
+
+                                        <text>@p.pieceType
+
+                                        <img src="~/Images/@(numeImagine).png" style="width : 10%" />
+
+                                        </text>
+                                    }
+                                }
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        }
+
         <tr>
             <td>
-                @i
             </td>
             @{
-                for (int m = 1; m <= 8; m++)
+                for (char j = 'A'; j <= 'H'; j++)
                 {
-                        <td>
-
-
-
-                            @{
-                                var p = Model.GetPieceFrom(i, (proiect_sah.column)m);
-                                if (p != null)
-                                {
-                                    string numeImagine = p.pieceType + ((int)p.Color).ToString();
-
-                                    <text>@p.pieceType
-
-                                    <img src="~/Images/@(numeImagine).png" style="width : 10%" />
-
-                                    </text>
-                                }
-                            }
-                        </td>
-                }  
+                    <td>
+                        @j
+                    </td>
                 }
-        </tr>
-        }
-     }
-    
-    <tr>
-        <td>
 
-        </td>
-        @{ 
-            for (char j = 'A'; j <='H'; j++)
-            {
-                <td>
-                    @j
-                </td>
             }
+        </tr>
 
-        }
-    </tr>
-      
     </table>
+    <h2>
+        @Model.PlayerWhite.name
+    </h2>
 </div>

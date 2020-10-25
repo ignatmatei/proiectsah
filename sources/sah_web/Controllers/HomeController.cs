@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using proiect_sah;
+using sah;
 using sah_web.Models;
 
 namespace sah_web.Controllers
@@ -22,8 +23,12 @@ namespace sah_web.Controllers
 
         public IActionResult Index()
         {
-            Board b = new Board();
-            return View(b);
+            Game G = new Game();
+            G.PlayerWhite.color = Color.White;
+            G.PlayerBlack.color = Color.Black;
+            G.PlayerWhite.name = "Andrei";
+            G.PlayerBlack.name = "Matei" ;
+            return View(G);
         }
 
         public IActionResult Privacy()
