@@ -30,6 +30,11 @@ namespace sah_web.Controllers
             G.PlayerBlack.name = "Matei" ;
             return View(G);
         }
+        //https://localhost:5001/Home/IsValid?first=e2&last=e4
+        public bool IsValid(string first, string last)
+        {
+            return true;
+        }
 
         public IActionResult Privacy()
         {

@@ -69,5 +69,40 @@
     </table>
     <h2>
         @Model.PlayerWhite.name
+       
     </h2>
+    <div>
+        Introdu mutarea : ex d2 d4
+        <p>
+
+        </p>
+        <input id="AllMoveWhite" />
+        <button onclick="javascript:MoveWhite()">
+            Fin move
+        </button>
+    </div>
 </div>
+<script>
+    function MoveWhite()
+    {
+        
+        var moveplayer = document.getElementById("AllMoveWhite").value;
+        window.alert(moveplayer);
+        var arr = moveplayer.split(' ');
+        console.log(arr);
+        var urlValid = '/Home/IsValid?first=' + arr[0] + '&last=' + arr[1];
+        $.ajax({
+            url: urlValid,       
+            success: function (data, textStatus, xhr) {
+                window.alert('am primit raspuns' + data);
+                if (data) {
+                    //TODO: executa mutare
+                }
+                else {
+                    //spune-i ca nu se face mutarea
+                }
+                
+            }
+        });
+    }
+</script>
