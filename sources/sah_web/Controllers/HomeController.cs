@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using proiect_sah;
 using sah;
@@ -34,8 +35,12 @@ namespace sah_web.Controllers
         //https://localhost:5001/Home/IsValid?first=e2&last=e4
         public bool IsValid(string first, string last)
         {
-            //G.board.IsLegal()
-            return true;
+          var coloanainit = Enum.Parse<column>(first.Substring(0, 1), true);
+          var linieinit = int.Parse(first.Substring(1, 1));
+          var coloanafin = Enum.Parse<column>(last.Substring(0, 1), true);
+          var liniefin = int.Parse(last.Substring(1, 1));
+           return G.board.IsLegal(linieinit, coloanainit, liniefin, coloanafin);
+       
         }
 
         public IActionResult Privacy()
