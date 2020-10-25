@@ -30,6 +30,7 @@ jobs:
         dotnet test --no-restore --verbosity normal
 
     - name: publish    
+      run: |   
         cd sources
         cd sah_web
         dotnet publish --configuration Release  -r win-x64 --self-contained -o sahweb -p:PublishSingleFile=true -p:PublishTrimmed=true
