@@ -86,24 +86,8 @@ namespace proiect_sah
             var piece = GetPieceFrom(pozi_init, pozj_init);
             Color c = piece.Color;
             var moves = piece.Moves(pozi_init, pozj_init);
-            if (piece.pieceType == PieceType.Pawn)
-            {
-                if (pozi_final == 1 + pozi_init && pozj_init == pozj_final)
-                    return true;
-                if (pozi_init == 2)
-                {
-                    if (pozi_final == 2 + pozi_init && pozj_init == pozj_final)
-                        return true;
-                    return false;
-
-                }
-                return false;
-            }
-            else
-            {
-
-
-                if (moves[pozi_final, (int)pozj_final] == 1)
+           
+            if (moves[pozi_final, (int)pozj_final] == 1)
                 {
                     if (piece.pieceType == PieceType.King)
                     {
@@ -157,12 +141,27 @@ namespace proiect_sah
                                 return false;
                         return true;
                     }
+                    if(piece.pieceType == PieceType.Pawn)
+                {
+                    if(pozj_init == pozj_final)
+                    {
+                        var opozitiepion = GetPieceFrom(pozi_init + 1, pozj_init);
+                        if (opozitiepion != null)
+                            return false;
+                        if (pozi_final == pozi_init + 2)
+                        {
+                            opozitiepion = GetPieceFrom(pozi_init + 2, pozj_init);
+                            if (opozitiepion != null)
+                                return false;
+                            return true;
+                        }
+                        return true;
+                    }
+                    return true;
                 }
-                return false;
-            }
-         
-               
-          
+                }
+             return false;
+              
         }
         public void MovePiece(int pozi_init, column pozj_init, int pozi_final, column pozj_final)
         {
