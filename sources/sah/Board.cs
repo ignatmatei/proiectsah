@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Text;
 
 namespace proiect_sah
@@ -72,33 +73,42 @@ namespace proiect_sah
         public bool IsLegal (int pozi_init, column pozj_init, int pozi_final, column pozj_final)
         {
             
-            var p = GetPieceFrom(pozi_init, pozj_init);
-            Color c = p.Color;
-            var pawn = new Pawn(c); 
-            var moves = p.Moves(pozi_init, pozj_init);
-            
-            if (p == pawn)
+            var piece = GetPieceFrom(pozi_init, pozj_init);
+            Color c = piece.Color;
+            var moves = piece.Moves(pozi_init, pozj_init);
+            if (piece.pieceType == PieceType.Pawn)
             {
-                var enemypiece1 = table[pozi_init + 1, (int)pozj_init - 1];
-                var enemypiece2 = table[pozi_init + 1, (int)pozj_init + 1];
-                Color colorenemypiece1 = Color.White;
-                if (enemypiece1 < 0)
-                    colorenemypiece1 = Color.Black;
-                Color colorenemypiece2 = Color.White;
-                if (enemypiece2 < 0)
-                    colorenemypiece2 = Color.Black;
-                if (colorenemypiece1 != c)
+                if (pozi_final == 1 + pozi_init && pozj_init == pozj_final)
+                    return true;
+                if (pozi_init == 2)
                 {
-                    moves[pozi_init + 1, (int)pozj_init - 1] = 1;
-                }
-                if (colorenemypiece2 != c)
-                {
-                    moves[pozi_init + 1, (int)pozj_init + 1] = 1;
-                }
+                    if (pozi_final == 2 + pozi_init && pozj_init == pozj_final)
+                        return true;
+                    return false;
 
+                }
+                return false;
             }
-            if (moves[pozi_final, (int)pozj_final] == 1) return true;
+            else
+            {
+
+
+                if (moves[pozi_final, (int)pozj_final] == 1)
+                {
+                    if (piece.pieceType == PieceType.King)
+                    {
+                        var opozitie = GetPieceFrom(pozi_final, pozj_final);
+                        if (opozitie.pieceType != PieceType.Nopiece)
+                            if (piece.Color == opozitie.Color)
+                                return false;
+                        return true;
+                    }
+
+
+                }
+            }
             return false;
+            
 
 
             
@@ -111,8 +121,10 @@ namespace proiect_sah
                 var currpiece = table[pozi_init, (int)pozj_init];
                 table[pozi_init, (int)pozj_init] = PieceType.Nopiece;
                 table[pozi_final, (int)pozj_final] = currpiece;
+                return;
             }
-            throw new Exception("piesa nu se poate muta");
+            
+                throw new Exception("mutare imposibila");
         }
         public PieceType[,]            table=new PieceType[9,9];
 

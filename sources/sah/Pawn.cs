@@ -20,8 +20,8 @@ namespace proiect_sah
         }
         int[,] AllLegalMoves = new int[9, 9];
         XoY [] Allcapture = new XoY [2]; 
-        public override int[,] Moves(int starti, column startj)
-        {
+        public override int[,] Moves(int starti,column startj)
+        { 
             for (int i = 1; i <= 8; i++)
                 for (int j = 1; j <= 8; j++)
                     AllLegalMoves[i, j] = 0;

@@ -41,7 +41,7 @@ namespace test_tabla
         public void Mutarilegale()
         {
             Board b = new Board();
-            Assert.True(b.IsLegal(2, column.E, 4, column.E));
+            Assert.True(b.IsLegal(2, column.C, 4, column.C));
         }
 
         [Fact]
@@ -49,15 +49,22 @@ namespace test_tabla
         {
             Board b = new Board();
  
-            b.MovePiece(2, column.C, 4, column.C);
-            var pion = b.GetPieceFrom(4, column.C);
-            var nimic = b.GetPieceFrom(2, column.C);
+            b.MovePiece(2, column.E, 4, column.E);
+            
+            var pion = b.GetPieceFrom(4, column.E);
+            var nimic = b.GetPieceFrom(2, column.E);
             Assert.Equal(PieceType.Pawn, pion.pieceType);
             Assert.Null(nimic);
         }
-        public void ImposibilQueen ()
+        [Fact]
+        public void ImposibilKing ()
         {
             Board n = new Board();
+            Assert.Throws<Exception>(
+                () =>
+            n.MovePiece(1, column.E, 2, column.E)
+           );
+
         }
 
     }
