@@ -17,9 +17,29 @@ namespace proiect_sah
         {
             int diff = starti - (int)startj;
             int i, j;
-            if (diff < 0) diff *= -1;
-            for (i = 1; i <= 8; i++)
-                AllLegalMoves[i, i + diff] = 1;
+            if (diff < 0)
+            {
+                diff *= -1;
+                i = 1;
+                j = i + diff;
+                while (j <= 8)
+                {
+                    AllLegalMoves[i, j] = 1;
+                    j++;
+                    i++;
+                }
+            }
+            if (diff > 0)
+            {
+                j = 1;
+                i = j + diff;
+                while (i <= 8)
+                {
+                    AllLegalMoves[i, j] = 1;
+                    i++;
+                    j++;
+                }
+            }
             i = starti;
             j = (int)startj;
             while (i >= 1 && j <= 8)

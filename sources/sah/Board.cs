@@ -50,8 +50,8 @@ namespace proiect_sah
             {
                 var pioninamic1 = table[pozi_init + 1, ((int)pozj_init) - 1];
                 var pioninamic2 = table[pozi_init + 1, ((int)pozj_init) + 1];
-                Color cul1 = Color.White; 
-                Color cul2 = Color.Black;
+                Color cul1 = Color.White;
+                Color cul2 = Color.White;
                 if(pioninamic1 < 0)
                 {
                     cul1 = Color.Black;
@@ -77,38 +77,24 @@ namespace proiect_sah
                     }
                     if (piece.pieceType == PieceType.Rook)
                     {
-                        if (pozi_init == pozi_final)
+                    var fin = table[pozi_final, (int)pozj_final];
+                    Color cult = Color.White;
+                    if (fin < 0)
+                        cult = Color.Black;
+                    if (pozi_init == pozi_final)
                         {
-                            for (int i = min((int)pozj_init, (int)pozj_final); i < max((int)pozj_init, (int)pozj_final); i++)
+                            for (int i = min((int)pozj_init, (int)pozj_final) + 1; i < max((int)pozj_init, (int)pozj_final); i++)
                                 if (table[pozi_init, i] != PieceType.Nopiece)
                                     return false;
-                            int j = max((int)pozj_init, (int)pozj_final);
-                            var fin = table[pozi_init, j];
-                            
-                            if (fin == 0)
-                                return true;
-                          
-                            Color c1 = Color.White;
-                            if (fin < 0)
-                                c1 = Color.Black;
-                            if (c1 == piece.Color)
-                                return false;
-                            return true;
-                          
-
                         }
-                        for (int i = min(pozi_init, pozi_final); i < max(pozi_init,pozi_final); i++)
+                      for (int i = min(pozi_init, pozi_final) + 1; i < max(pozi_init,pozi_final); i++)
                             if (table[i, (int)pozj_init] != PieceType.Nopiece)
                                 return false;
-                        int j1 = max(pozi_init, pozi_final);
-                        var fin1 = table[j1, (int)pozj_init];
-                        if (fin1 == 0) return true;
-                        Color c2 = Color.White;
-                        if (fin1 < 0)
-                            c2 = Color.Black;
-                        if (c2 == piece.Color)
-                            return false;
+                    if (fin == 0)
                         return true;
+                    if (cult != piece.Color)
+                        return true;
+                    return false;
 
                     }
                     if (piece.pieceType == PieceType.Knight)
@@ -136,6 +122,131 @@ namespace proiect_sah
                         return true;
                     }
                     return true;
+                }
+                    if(piece.pieceType == PieceType.Bishop)
+                {
+                    var opozitienebun = table[pozi_final, (int)pozj_final];
+                    Color culn = Color.White;
+                    if (opozitienebun < 0)
+                        culn = Color.Black;
+                    if (pozi_init < pozi_final && (int)pozj_init < (int)pozj_final)
+                    {
+                        int i = pozi_init + 1, j = (int)pozj_init + 1;
+                        while (i < pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i++;
+                            j++;
+                        }
+                    }
+                    if(pozi_init < pozi_final && (int)pozj_init > (int)pozj_final)
+                    {
+                        int i = pozi_init + 1, j = (int)pozj_init - 1;
+                        while (i < pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i++;
+                            j--;
+                        }
+                    }
+                    if (pozi_init > pozi_final && (int)pozj_init > (int)pozj_final)
+                    {
+                        int i = pozi_init - 1, j = (int)pozj_init - 1;
+                        while (i > pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i--;
+                            j--;
+                        }
+                    }
+                    if (pozi_init > pozi_final && (int)pozj_init < (int)pozj_final)
+                    {
+                        int i = pozi_init - 1, j = (int)pozj_init + 1;
+                        while (i > pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i--;
+                            j++;
+                        }
+                    }
+                    if (opozitienebun == 0)
+                        return true;
+                    if (culn != piece.Color)
+                        return true;
+                    return false;
+                }
+                    if (piece.pieceType == PieceType.Queen)
+                {
+                    var fin = table[pozi_final, (int)pozj_final];
+                    Color culd = Color.White;
+                    if (fin < 0)
+                        culd = Color.Black;
+                    if (pozi_init == pozi_final)
+                    {
+                        for (int i = min((int)pozj_init, (int)pozj_final) + 1; i < max((int)pozj_init, (int)pozj_final); i++)
+                            if (table[pozi_init, i] != PieceType.Nopiece)
+                                return false;
+                    }
+                    if ((int)pozj_init == (int)pozj_final)
+                    {
+                        for (int i = min(pozi_init, pozi_final) + 1; i < max(pozi_init, pozi_final); i++)
+                            if (table[i, (int)pozj_init] != PieceType.Nopiece)
+                                return false;
+                    }
+                    if (pozi_init < pozi_final && (int)pozj_init < (int)pozj_final)
+                    {
+                        int i = pozi_init + 1, j = (int)pozj_init + 1;
+                        while (i < pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i++;
+                            j++;
+                        }
+                    }
+                    if (pozi_init < pozi_final && (int)pozj_init > (int)pozj_final)
+                    {
+                        int i = pozi_init + 1, j = (int)pozj_init - 1;
+                        while (i < pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i++;
+                            j--;
+                        }
+                    }
+                    if (pozi_init > pozi_final && (int)pozj_init > (int)pozj_final)
+                    {
+                        int i = pozi_init - 1, j = (int)pozj_init - 1;
+                        while (i > pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i--;
+                            j--;
+                        }
+                    }
+                    if (pozi_init > pozi_final && (int)pozj_init < (int)pozj_final)
+                    {
+                        int i = pozi_init - 1, j = (int)pozj_init + 1;
+                        while (i > pozi_final)
+                        {
+                            if (table[i, j] != PieceType.Nopiece)
+                                return false;
+                            i--;
+                            j++;
+                        }
+                    }
+                    if (fin == 0)
+                        return true;
+                    if (culd != piece.Color)
+                        return true;
+                     return false;
+
                 }
                 }
              return false;

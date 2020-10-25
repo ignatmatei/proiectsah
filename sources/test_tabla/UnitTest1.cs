@@ -98,5 +98,39 @@ namespace test_tabla
             Board b = new Board();
             Assert.False(b.IsLegal(2, column.A, 3, column.C));
         }
+
+        [Fact]
+        public void ImposibilBishop()
+        {
+            Board b = new Board();
+            Assert.False(b.IsLegal(1, column.C, 3, column.E));
+        }
+        [Fact]
+        public void PosibilBishop()
+        {
+            Board b = new Board();
+            b.MovePiece(2, column.B, 3, column.B);
+            Assert.True(b.IsLegal(1, column.C, 2, column.B));
+        }
+        [Fact]
+        public void ImposibilQueen()
+        {
+            Board b = new Board();
+            Assert.False(b.IsLegal(1, column.D, 3, column.D));
+        }
+        [Fact]
+        public void PosibilQueen()
+        {
+            Board b = new Board();
+            b.MovePiece(2, column.D, 4, column.D);
+            Assert.True(b.IsLegal(1, column.D, 3, column.D));
+        }
+        [Fact]
+        public void PosibilKing()
+        {
+            Board b = new Board();
+            b.MovePiece(2, column.E, 4, column.E);
+            Assert.True(b.IsLegal(1, column.E, 2, column.E));
+        }
     }
 }

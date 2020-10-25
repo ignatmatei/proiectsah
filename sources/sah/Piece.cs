@@ -8,6 +8,7 @@ namespace proiect_sah
         public Color Color;
         public PieceType pieceType { get; protected set; }
         public abstract int[,] Moves(int starti, column startj);
+        /*protected int [,] LegalMoe*/
 
         public static Piece GetPieceFromPieceType(PieceType type, Color c) 
         {
