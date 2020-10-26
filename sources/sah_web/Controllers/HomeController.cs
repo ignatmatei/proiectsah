@@ -39,7 +39,12 @@ namespace sah_web.Controllers
           var linieinit = int.Parse(first.Substring(1, 1));
           var coloanafin = Enum.Parse<column>(last.Substring(0, 1), true);
           var liniefin = int.Parse(last.Substring(1, 1));
-           return G.board.IsLegal(linieinit, coloanainit, liniefin, coloanafin);
+            if (G.board.IsLegal(linieinit, coloanainit, liniefin, coloanafin))
+            {
+                G.board.MovePiece(linieinit, coloanainit, liniefin, coloanafin);
+                return true;
+            }
+            return false;
        
         }
 
