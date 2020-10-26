@@ -38,6 +38,8 @@ namespace proiect_sah
                 i++;
                 j++;
             }
+            i = starti;
+            j = (int)startj;
             while (i >= 1 && j <= 8)
             {
                 AllLegalMoves[i, j] = 1;

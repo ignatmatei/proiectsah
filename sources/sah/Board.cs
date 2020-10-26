@@ -20,18 +20,37 @@ namespace proiect_sah
 
     public class Board
     {
-        public bool IsKingInCheck(Color c, int pozikng, column pozjking)
+        public bool IsKingInCheck(Color c, int poziking, column pozjking)
         {
             int i, j;
-           /* for (i = 1; i <= 8; i++)
+            for (i = 1; i <= 8; i++)
+                for(j = 1; j <= 8; j++)
             {
                 var inamic = table[i, j];
                 Color advers = Color.White;
                 if (inamic < 0)
                     advers = Color.Black;
                 if(advers != c)
-
-            }*/
+                {
+                    column col = column.A;
+                    if (j == 2)
+                        col = column.B;
+                    if (j == 3)
+                        col = column.C;
+                    if (j == 4)
+                        col = column.D;
+                    if (j == 5)
+                        col = column.E;
+                    if (j == 6)
+                        col = column.F;
+                    if (j == 7)
+                        col = column.G;
+                    if (j == 8)
+                        col = column.H;
+                    if (IsLegal(i, col, poziking, pozjking))
+                        return true;
+                }
+            }
             return false;
         }
         public Piece GetPieceFrom(int line, column col)
@@ -60,7 +79,7 @@ namespace proiect_sah
             var piece = GetPieceFrom(pozi_init, pozj_init);
             Color c = piece.Color;
             var moves = piece.Moves(pozi_init, pozj_init);
-             if (piece.pieceType == PieceType.Pawn)
+             if (piece.pieceType == PieceType.Pawn && piece.Color == Color.White)
             {
                 var pioninamic1 = table[pozi_init + 1, ((int)pozj_init) - 1];
                 var pioninamic2 = table[pozi_init + 1, ((int)pozj_init) + 1];
@@ -123,7 +142,7 @@ namespace proiect_sah
                                 return false;
                         return true;
                     }
-                    if(piece.pieceType == PieceType.Pawn)
+                    if(piece.pieceType == PieceType.Pawn && piece.Color == Color.White)
                 {
                     if(pozj_init == pozj_final)
                     {
