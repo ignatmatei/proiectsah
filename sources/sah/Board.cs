@@ -170,7 +170,7 @@ namespace proiect_sah
                                     if (opozrege != PieceType.Nopiece)
                                         return false;
                                 }
-                                if (table[pozi_init, opoz + 1] != PieceType.Rook)
+                                if (table[pozi_init, opoz - 1] != PieceType.Rook)
                                     return false;
                                 return true;
                             }
