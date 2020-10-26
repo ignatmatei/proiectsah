@@ -115,44 +115,65 @@ namespace proiect_sah
                 pioninamic1 = PieceType.Nopiece;
                 pioninamic2 = PieceType.Nopiece;
             }*/
-            if (piece.pieceType == PieceType.Pawn && piece.Color == Color.White)
+            if (piece.pieceType == PieceType.Pawn)
             {
-                if ((pozi_init == pozi_final + 1 ) && ((int)pozj_final == (int)pozj_init + 1 || (int)pozj_final == (int)pozj_init - 1))
+                if (piece.Color == Color.White)
                 {
-                    var opozitiepion1 = GetPieceFrom(pozi_final, pozj_final);
-                    if (opozitiepion1 != null && opozitiepion1.Color != piece.Color)
-                        return true;
-                    return false;
-                }
-
-            }
-            if (piece.pieceType == PieceType.Pawn && piece.Color == Color.Black)
-            {
-                if (pozj_init == pozj_final)
-                {
-                    var opozitiepion = GetPieceFrom(pozi_init - 1, pozj_init);
-                    if (opozitiepion != null)
-                        return false;
-                    if (pozi_final == pozi_init - 2 && pozi_init == 7)
+                    if (pozj_init == pozj_final)
                     {
-                        opozitiepion = GetPieceFrom(pozi_init - 2, pozj_init); ;
+                        var opozitiepion = GetPieceFrom(pozi_init + 1, pozj_init);
                         if (opozitiepion != null)
                             return false;
-                        return true;
+                        if (pozi_final == pozi_init + 2 && pozi_init == 2)
+                        {
+                            opozitiepion = GetPieceFrom(pozi_init + 2, pozj_init); ;
+                            if (opozitiepion != null)
+                                return false;
+                            return true;
 
+                        }
+                        if (pozi_final == pozi_init + 1)
+                            return true;
+                        return false;
                     }
-                    if (pozi_final == pozi_init - 1)
-                        return true;
-                    return false;
+                    if ((pozi_init == pozi_final - 1) && ((int)pozj_final == (int)pozj_init + 1 || (int)pozj_final == (int)pozj_init - 1))
+                    {
+                        var opozitiepion1 = GetPieceFrom(pozi_final, pozj_final);
+                        if (opozitiepion1 != null && opozitiepion1.Color != piece.Color)
+                            return true;
+                        return false;
+                    }
+
                 }
-                if ((pozi_init == pozi_final - 1) && ((int)pozj_final == (int)pozj_init + 1 || (int)pozj_final == (int)pozj_init - 1))
+                if (piece.Color == Color.Black)
                 {
-                    var opozitiepion1 = GetPieceFrom(pozi_final, pozj_final);
-                    if (opozitiepion1 != null && opozitiepion1.Color != piece.Color)
-                        return true;
+                    if (pozj_init == pozj_final)
+                    {
+                        var opozitiepion = GetPieceFrom(pozi_init - 1, pozj_init);
+                        if (opozitiepion != null)
+                            return false;
+                        if (pozi_final == pozi_init - 2 && pozi_init == 7)
+                        {
+                            opozitiepion = GetPieceFrom(pozi_init - 2, pozj_init); ;
+                            if (opozitiepion != null)
+                                return false;
+                            return true;
+
+                        }
+                        if (pozi_final == pozi_init - 1)
+                            return true;
+                        return false;
+                    }
+                    if ((pozi_init == pozi_final + 1) && ((int)pozj_final == (int)pozj_init + 1 || (int)pozj_final == (int)pozj_init - 1))
+                    {
+                        var opozitiepion1 = GetPieceFrom(pozi_final, pozj_final);
+                        if (opozitiepion1 != null && opozitiepion1.Color != piece.Color)
+                            return true;
+                        return false;
+                    }
                     return false;
                 }
-                return false; 
+                return false;
             }
             else
             {
