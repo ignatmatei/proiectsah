@@ -20,6 +20,20 @@ namespace proiect_sah
 
     public class Board
     {
+        public bool IsKingInCheck(Color c, int pozikng, column pozjking)
+        {
+            int i, j;
+           /* for (i = 1; i <= 8; i++)
+            {
+                var inamic = table[i, j];
+                Color advers = Color.White;
+                if (inamic < 0)
+                    advers = Color.Black;
+                if(advers != c)
+
+            }*/
+            return false;
+        }
         public Piece GetPieceFrom(int line, column col)
         {
             var piesa = table[line, (int)col];
@@ -64,6 +78,10 @@ namespace proiect_sah
                     moves[pozi_init + 1, ((int)pozj_init) - 1] = 1;
                 if(Math.Abs((int)pioninamic2) == 1 && cul2 != c)
                     moves[pozi_init + 1, ((int)pozj_init) + 1] = 1;
+                if ((int)table[pozi_init,(int)pozj_init] == - (int)table[pozi_init,(int)pozj_init +1]  && pozi_init == 6 )
+                    moves[pozi_init + 1, ((int)pozj_init) + 1] = 1;
+                if ((int)table[pozi_init, (int)pozj_init] == -(int)table[pozi_init, (int)pozj_init - 1] && pozi_init == 6)
+                    moves[pozi_init + 1, ((int)pozj_init) - 1] = 1;
             }
             if (moves[pozi_final, (int)pozj_final] == 1)
                 {

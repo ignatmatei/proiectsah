@@ -132,5 +132,10 @@ namespace test_tabla
             b.MovePiece(2, column.E, 4, column.E);
             Assert.True(b.IsLegal(1, column.E, 2, column.E));
         }
+        [Fact] public void IsWhiteKingInCheck ()
+        {
+            Board b = new Board();
+            Assert.False(b.IsKingInCheck(Color.White, 1, column.E));
+        }
     }
 }
