@@ -158,5 +158,12 @@ namespace test_tabla
             Board b = new Board();
             Assert.False(b.IsKingInCheck(Color.Black, 8, column.E));
         }
+
+        [Fact]
+        public void ImpossibleCastle()
+        {
+            Board b = new Board();
+            Assert.False(b.IsLegal(1, column.E, 1, column.G));
+        }
     }
 }

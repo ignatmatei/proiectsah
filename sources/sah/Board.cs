@@ -80,41 +80,6 @@ namespace proiect_sah
             var piece = GetPieceFrom(pozi_init, pozj_init);
             Color c = piece.Color;
             var moves = piece.Moves(pozi_init, pozj_init);
-            /*if (piece.pieceType == PieceType.Pawn && piece.Color == Color.White)
-            {
-                PieceType pioninamic1 = PieceType.Nopiece, pioninamic2 = PieceType.Nopiece;
-                Color cul1 = Color.White;
-                Color cul2 = Color.White;
-                if ((int)pozj_init > 1)
-                {
-                    pioninamic1 = table[pozi_init + 1, ((int)pozj_init) - 1];
-                    
-                    if (pioninamic1 < 0)
-                        cul1 = Color.Black;
-                }
-                if ((int)pozj_init < 8)
-                {
-                    pioninamic2 = table[pozi_init + 1, ((int)pozj_init) + 1];
-                    
-                    if (pioninamic2 < 0)
-                        cul2 = Color.Black;
-                }
-                if (pioninamic1 != PieceType.Nopiece)
-                 if (Math.Abs((int)pioninamic1) == 1 && cul1 != c)
-                    moves[pozi_init + 1, ((int)pozj_init) - 1] = 1;
-                if (pioninamic1 != PieceType.Nopiece)
-                    if (Math.Abs((int)pioninamic2) == 1 && cul2 != c)
-                    moves[pozi_init + 1, ((int)pozj_init) + 1] = 1;
-                if (pioninamic1 != PieceType.Nopiece)
-                    if ((int)table[pozi_init, (int)pozj_init] == -(int)table[pozi_init, (int)pozj_init + 1] && pozi_init == 6)
-                    moves[pozi_init + 1, ((int)pozj_init) + 1] = 1;
-                if ((int)table[pozi_init, (int)pozj_init] == -(int)table[pozi_init, (int)pozj_init - 1] && pozi_init == 6)
-                    moves[pozi_init + 1, ((int)pozj_init) - 1] = 1;
-                cul1 = Color.White;
-                cul2 = Color.White;
-                pioninamic1 = PieceType.Nopiece;
-                pioninamic2 = PieceType.Nopiece;
-            }*/
             if (piece.pieceType == PieceType.Pawn)
             {
                 if (piece.Color == Color.White)
@@ -181,6 +146,36 @@ namespace proiect_sah
                 {
                     if (piece.pieceType == PieceType.King)
                     {
+                        if (Math.Abs((int)pozj_final - (int)pozj_init) == 2)
+                        {
+                            if ((int)pozj_final > (int) pozj_init)
+                            {
+                                int opoz;
+                                for (opoz =(int) pozj_init; opoz <= (int)pozj_final; opoz++)
+                                {
+                                    var opozrege = table[pozi_init, opoz];
+                                    if (opozrege != PieceType.Nopiece)
+                                        return false;
+                                }
+                                if (table[pozi_init, opoz] != PieceType.Rook)
+                                    return false;
+                                return true;
+                             }
+                            if ((int) pozj_final < (int) pozj_init)
+                            {
+                                int opoz;
+                                for (opoz = (int)pozj_init; opoz >= (int)pozj_final; opoz--)
+                                {
+                                    var opozrege = table[pozi_init, opoz];
+                                    if (opozrege != PieceType.Nopiece)
+                                        return false;
+                                }
+                                if (table[pozi_init, opoz + 1] != PieceType.Rook)
+                                    return false;
+                                return true;
+                            }
+
+                        }
                         var opozitie = GetPieceFrom(pozi_final, pozj_final);
                         if (opozitie != null)
                             if (piece.Color == opozitie.Color)
@@ -369,9 +364,24 @@ namespace proiect_sah
         {
             if(IsLegal(pozi_init, pozj_init, pozi_final , pozj_final))
             {
+
                 var currpiece = table[pozi_init, (int)pozj_init];
                 table[pozi_init, (int)pozj_init] = PieceType.Nopiece;
                 table[pozi_final, (int)pozj_final] = currpiece;
+                if (currpiece == PieceType.King)
+                {
+                    if ((int)pozj_final - (int)pozj_init == 2)
+                    {
+                        table[pozi_init, (int)pozj_final + 1] = PieceType.Nopiece;
+                        table[pozi_init, (int)pozj_final - 1] = PieceType.Rook;
+                    }
+                    if ((int)pozj_final - (int)pozj_init == -2)
+                    {
+                        table[pozi_init, (int)pozj_final - 2] = PieceType.Nopiece;
+                        table[pozi_init, (int)pozj_final + 1] = PieceType.Rook;
+                    }
+                }
+                
                 return;
             }
             
