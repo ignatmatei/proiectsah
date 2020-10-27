@@ -103,6 +103,9 @@
                     var piesa = oldparent.querySelector("#piesa");
                     console.log(piesa);
                     var newparent = document.getElementById(arr[1]);
+                    var PieceNewParent = newparent.querySelector("#piesa");
+                    if (PieceNewParent != null)
+                    newparent.removeChild(PieceNewParent);
                     newparent.append(piesa);
 
                 }
