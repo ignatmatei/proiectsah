@@ -16,6 +16,9 @@ namespace sah_web.Controllers
     public class HomeController : Controller
     {
         static Game G = new Game();
+        /// <summary>
+        /// g = new game
+        /// </summary>
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)

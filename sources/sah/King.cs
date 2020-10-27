@@ -53,16 +53,6 @@ namespace proiect_sah
             for (int i = 1; i <= 8; i++)
                 for (int j = 1; j <= 8; j++)
                     AllLegalMoves[i, j] = 0;
-            if ((starti == 1 && startj == column.E))
-            {
-                AllLegalMoves[1, 7] = 1;
-                AllLegalMoves[1, 3] = 1;
-            }
-            if ((starti == 8 && startj == column.E))
-            {
-                AllLegalMoves[8, 7] = 1;
-                AllLegalMoves[8, 3] = 1;
-            }
             int nexti , nextj, directions;
             for (directions = 0; directions <= 7; directions++)
             {

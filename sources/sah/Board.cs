@@ -142,48 +142,47 @@ namespace proiect_sah
                 }
                 return false;
             }
+            if(piece.pieceType == PieceType.King)
+            {
+                if (moves[pozi_final, (int)pozj_final] == 1)
+                {
+                    var opozitie = GetPieceFrom(pozi_final, pozj_final);
+                    if (opozitie != null)
+                        if (piece.Color == opozitie.Color)
+                            return false;
+                    return true;
+                }
+                if(pozj_final == column.G)
+                {
+                    var opozitierege = table[pozi_init, 6];
+                    if (opozitierege != PieceType.Nopiece)
+                        return false;
+                    opozitierege = table[pozi_init, 7];
+                    if (opozitierege != PieceType.Nopiece)
+                        return false;
+                }
+                if (pozj_final == column.C)
+                {
+                    var opozitierege1 = table[pozi_init, 4];
+                    for (int m = 4; m >= 2; m--)
+                    {
+                        opozitierege1 = table[pozi_init, m];
+                        if (opozitierege1 != PieceType.Nopiece)
+                            return false;
+                    }
+                }
+                if (piece.Color == Color.White)
+                    if (pozi_init == 1 && pozj_init == column.E && pozi_final == 1 && (pozj_final == column.G || pozj_final == column.C))
+                        return true;
+                if (piece.Color == Color.Black)
+                    if (pozi_init == 8 && pozj_init == column.E && pozi_final == 8 && (pozj_final == column.G || pozj_final == column.C))
+                        return true;
+                return false;
+            }
             else
             {
                 if (moves[pozi_final, (int)pozj_final] == 1)
                 {
-                    if (piece.pieceType == PieceType.King)
-                    {
-                        if (Math.Abs((int)pozj_final - (int)pozj_init) == 2)
-                        {
-                            if ((int)pozj_final > (int) pozj_init)
-                            {
-                                int opoz;
-                                for (opoz =(int) pozj_init; opoz <= (int)pozj_final; opoz++)
-                                {
-                                    var opozrege = table[pozi_init, opoz];
-                                    if (opozrege != PieceType.Nopiece)
-                                        return false;
-                                }
-                                if (table[pozi_init, opoz] != PieceType.Rook)
-                                    return false;
-                                return true;
-                             }
-                            if ((int) pozj_final < (int) pozj_init)
-                            {
-                                int opoz;
-                                for (opoz = (int)pozj_init; opoz >= (int)pozj_final; opoz--)
-                                {
-                                    var opozrege = table[pozi_init, opoz];
-                                    if (opozrege != PieceType.Nopiece)
-                                        return false;
-                                }
-                                if (table[pozi_init, opoz - 1] != PieceType.Rook)
-                                    return false;
-                                return true;
-                            }
-
-                        }
-                        var opozitie = GetPieceFrom(pozi_final, pozj_final);
-                        if (opozitie != null)
-                            if (piece.Color == opozitie.Color)
-                                return false;
-                        return true;
-                    }
                     if (piece.pieceType == PieceType.Rook)
                     {
                         var fin = table[pozi_final, (int)pozj_final];
@@ -370,17 +369,17 @@ namespace proiect_sah
                 var currpiece = table[pozi_init, (int)pozj_init];
                 table[pozi_init, (int)pozj_init] = PieceType.Nopiece;
                 table[pozi_final, (int)pozj_final] = currpiece;
-                if (currpiece == PieceType.King)
+                if (currpiece == PieceType.King && pozj_init == column.E && ( pozj_final == column.G  || pozj_final == column.C))
                 {
-                    if ((int)pozj_final - (int)pozj_init == 2)
+                    if (pozj_final == column.G)
                     {
-                        table[pozi_init, (int)pozj_final + 1] = PieceType.Nopiece;
-                        table[pozi_init, (int)pozj_final - 1] = PieceType.Rook;
+                        table[pozi_init , 8] = PieceType.Nopiece;
+                        table[pozi_init, 6] = PieceType.Rook;
                     }
-                    if ((int)pozj_final - (int)pozj_init == -2)
+                    if (pozj_final == column.C)
                     {
-                        table[pozi_init, (int)pozj_final - 2] = PieceType.Nopiece;
-                        table[pozi_init, (int)pozj_final + 1] = PieceType.Rook;
+                        table[pozi_init, 1] = PieceType.Nopiece;
+                        table[pozi_init, 4] = PieceType.Rook;
                     }
                 }
                 
