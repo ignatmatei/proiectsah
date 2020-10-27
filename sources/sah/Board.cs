@@ -104,7 +104,8 @@ namespace proiect_sah
                     if ((pozi_init == pozi_final - 1) && ((int)pozj_final == (int)pozj_init + 1 || (int)pozj_final == (int)pozj_init - 1))
                     {
                         var opozitiepion1 = GetPieceFrom(pozi_final, pozj_final);
-                        if (opozitiepion1 != null && opozitiepion1.Color != piece.Color)
+                        var opozitiepion2 = GetPieceFrom(pozi_init, pozj_final);
+                        if ((opozitiepion1 != null && opozitiepion1.Color != piece.Color) || (opozitiepion2 != null && opozitiepion2.Color != piece.Color && pozi_init == 6))
                             return true;
                         return false;
                     }
@@ -132,7 +133,8 @@ namespace proiect_sah
                     if ((pozi_init == pozi_final + 1) && ((int)pozj_final == (int)pozj_init + 1 || (int)pozj_final == (int)pozj_init - 1))
                     {
                         var opozitiepion1 = GetPieceFrom(pozi_final, pozj_final);
-                        if (opozitiepion1 != null && opozitiepion1.Color != piece.Color)
+                        var opozitiepion2 = GetPieceFrom(pozi_init, pozj_final);
+                        if ((opozitiepion1 != null && opozitiepion1.Color != piece.Color) || (opozitiepion2 != null && opozitiepion2.Color != piece.Color && pozi_init == 3))
                             return true;
                         return false;
                     }
