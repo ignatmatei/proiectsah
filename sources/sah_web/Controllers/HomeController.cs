@@ -13,8 +13,14 @@ using sah_web.Models;
 
 namespace sah_web.Controllers
 {
+    
     public class HomeController : Controller
     {
+        public bool NewGame()
+        {
+            G = new Game();
+            return true;
+        }
         static Game G = new Game();
         /// <summary>
         /// g = new game
