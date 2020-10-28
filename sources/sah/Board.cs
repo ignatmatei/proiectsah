@@ -366,21 +366,21 @@ namespace proiect_sah
             if(IsLegal(pozi_init, pozj_init, pozi_final , pozj_final))
             {
 
-                var currpiece = table[pozi_init, (int)pozj_init];
+                var currpiece = GetPieceFrom(pozi_init , pozj_init);
+                table[pozi_final, (int)pozj_final] = table[pozi_init, (int)pozj_init];
                 table[pozi_init, (int)pozj_init] = PieceType.Nopiece;
-                table[pozi_final, (int)pozj_final] = currpiece;
-                if (currpiece == PieceType.King && pozj_init == column.E && ( pozj_final == column.G  || pozj_final == column.C))
+                if (currpiece.pieceType == PieceType.King && pozj_init == column.E && ( pozj_final == column.G  || pozj_final == column.C))
                 {
                     
                         if (pozj_final == column.G)
-                        {
+                        {   
                             table[pozi_init, 8] = PieceType.Nopiece;
-                            table[pozi_init, 6] = PieceType.Rook;
+                            table[pozi_init, 6] =(PieceType) ((int)currpiece.Color *  (int)PieceType.Rook);
                         }
                         if (pozj_final == column.C)
                         {
                             table[pozi_init, 1] = PieceType.Nopiece;
-                            table[pozi_init, 4] = PieceType.Rook;
+                            table[pozi_init, 4] =(PieceType) ((int)currpiece.Color * (int)PieceType.Rook);
                         }
                     
                    
