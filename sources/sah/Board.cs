@@ -371,16 +371,19 @@ namespace proiect_sah
                 table[pozi_final, (int)pozj_final] = currpiece;
                 if (currpiece == PieceType.King && pozj_init == column.E && ( pozj_final == column.G  || pozj_final == column.C))
                 {
-                    if (pozj_final == column.G)
-                    {
-                        table[pozi_init , 8] = PieceType.Nopiece;
-                        table[pozi_init, 6] = PieceType.Rook;
-                    }
-                    if (pozj_final == column.C)
-                    {
-                        table[pozi_init, 1] = PieceType.Nopiece;
-                        table[pozi_init, 4] = PieceType.Rook;
-                    }
+                    
+                        if (pozj_final == column.G)
+                        {
+                            table[pozi_init, 8] = PieceType.Nopiece;
+                            table[pozi_init, 6] = PieceType.Rook;
+                        }
+                        if (pozj_final == column.C)
+                        {
+                            table[pozi_init, 1] = PieceType.Nopiece;
+                            table[pozi_init, 4] = PieceType.Rook;
+                        }
+                    
+                   
                 }
                 
                 return;
