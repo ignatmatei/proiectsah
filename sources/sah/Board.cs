@@ -21,6 +21,23 @@ namespace proiect_sah
 
     public class Board
     {
+        public Piece GetPieceFromPromotion(char pl, Color c)
+        {
+            switch (pl)
+            {
+                case 'Q':
+                    return new Queen(c);
+                case 'R':
+                    return new Knight(c);
+                case 'B':
+                    return new Bishop(c);
+                case 'K':
+                    return new Knight(c);
+
+                default:
+                    throw new ArgumentException($"do not exists {pl}. YOU CAN'T PROMOTE TO NEW KING OR NEW PAWN");
+            }
+        }
         public bool IsKingInCheck(Color c, int poziking, column pozjking)
         {
             int i, j;
@@ -384,6 +401,10 @@ namespace proiect_sah
                         }
                     
                    
+                }
+                if (currpiece.pieceType == PieceType.Pawn && (pozi_final == 8 || pozi_final == 1))
+                {
+
                 }
                 
                 return;
