@@ -95,11 +95,13 @@
         console.log(arr);
         var urlValid = '/Home/IsValid?first=' + arr[0] + '&last=' + arr[1];
         var last = arr[1].charAt(1);
-        if (piesa.dataset.piesa == "Pawn") {
-            window.alert("am mutat pion");
-        }
+        
         if (last == '1' || last == '8') {
-            
+            if (piesa.dataset.piesa == "Pawn") {
+
+                var promoted = window.prompt("Enter promoted piece");
+                urlValid = urlValid + '&pl=' + promoted;
+            }
         }
         $.ajax({
             url: urlValid,       
