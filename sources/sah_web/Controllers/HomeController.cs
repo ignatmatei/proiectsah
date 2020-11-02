@@ -42,15 +42,16 @@ namespace sah_web.Controllers
             return View(G);
         }
         //https://localhost:5001/Home/IsValid?first=e2&last=e4
-        public bool IsValid(string first, string last)
+        public bool IsValid(string first, string last , char pl =' ')
         {
           var coloanainit = Enum.Parse<column>(first.Substring(0, 1), true);
           var linieinit = int.Parse(first.Substring(1, 1));
           var coloanafin = Enum.Parse<column>(last.Substring(0, 1), true);
           var liniefin = int.Parse(last.Substring(1, 1));
+          
             if (G.board.IsLegal(linieinit, coloanainit, liniefin, coloanafin))
             {
-                G.board.MovePiece(linieinit, coloanainit, liniefin, coloanafin);
+                G.board.MovePiece(linieinit, coloanainit, liniefin, coloanafin, pl);
                 return true;
             }
             return false;

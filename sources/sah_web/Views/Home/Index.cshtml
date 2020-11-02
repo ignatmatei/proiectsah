@@ -36,9 +36,9 @@
                                     var p = board.GetPieceFrom(i, (proiect_sah.column)((int)m-64));
                                     if (p != null)
                                     {
-
+                                        
                                         string numeImagine = p.pieceType + ((int)p.Color).ToString();
-                                                                <span id="piesa">
+                                                                <span id="piesa" data-piesa="@p.pieceType">
                                                                  
                                                                     <img src="~/Images/@(numeImagine).png" style="width : 15%" />
 
@@ -85,22 +85,30 @@
 <script>
     function MoveWhite()
     {
-        
         var moveplayer = document.getElementById("AllMoveWhite").value;
-        window.alert(moveplayer);
         var arr = moveplayer.split(' ');
+        var oldparent = document.getElementById(arr[0]);
+        var piesa = oldparent.querySelector("#piesa");
+        console.log(piesa);
+        
+        window.alert(moveplayer);
         console.log(arr);
         var urlValid = '/Home/IsValid?first=' + arr[0] + '&last=' + arr[1];
+        var last = arr[1].charAt(1);
+        if (piesa.dataset.piesa == "Pawn") {
+            window.alert("am mutat pion");
+        }
+        if (last == '1' || last == '8') {
+            
+        }
         $.ajax({
             url: urlValid,       
             success: function (data, textStatus, xhr) {
-                window.alert('am primit raspuns' + data);
+                window.alert('am primit raspuns ' + data);
                 if (data) {
                     //TODO: executa mutare
-                    var oldparent = document.getElementById(arr[0]);
+                    
                     console.log(oldparent);
-                    var piesa = oldparent.querySelector("#piesa");
-                    console.log(piesa);
                     var newparent = document.getElementById(arr[1]);
                     var PieceNewParent = newparent.querySelector("#piesa");
                     if (PieceNewParent != null)

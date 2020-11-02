@@ -378,7 +378,7 @@ namespace proiect_sah
             }
               
         }
-        public void MovePiece(int pozi_init, column pozj_init, int pozi_final, column pozj_final)
+        public void MovePiece(int pozi_init, column pozj_init, int pozi_final, column pozj_final  , char pl = ' ')
         {
             if(IsLegal(pozi_init, pozj_init, pozi_final , pozj_final))
             {
@@ -404,7 +404,8 @@ namespace proiect_sah
                 }
                 if (currpiece.pieceType == PieceType.Pawn && (pozi_final == 8 || pozi_final == 1))
                 {
-
+                    var promoted = GetPieceFromPromotion(pl, currpiece.Color);
+                    table[pozi_final, (int)pozj_final] =(PieceType)((int)promoted.Color *(int)promoted.pieceType);
                 }
                 
                 return;
