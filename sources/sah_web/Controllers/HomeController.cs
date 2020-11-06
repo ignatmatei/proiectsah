@@ -35,11 +35,15 @@ namespace sah_web.Controllers
         [Authorize]
         public IActionResult Index()
         {
-           
+       
+
             G.PlayerWhite.color = Color.White;
             G.PlayerBlack.color = Color.Black;
-            G.PlayerWhite.name = "Andrei";
-            G.PlayerBlack.name = "Matei" ;
+            if (G.PlayerWhite.name == null) G.PlayerWhite.name = User.Claims.First().Value;
+            else
+            {
+                if (G.PlayerBlack.name == null) G.PlayerBlack.name = User.Claims.First().Value;
+            }
             return View(G);
         }
         //https://localhost:5001/Home/IsValid?first=e2&last=e4
