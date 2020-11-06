@@ -2,86 +2,164 @@
 @{
     ViewData["Title"] = "Index";
     var board = Model.board;
-
+    bool IsWhite = false;
+    if (User.Claims.First().Value == Model.PlayerWhite.name)
+    {
+        IsWhite = true;
+    }
 }
 
 <h1>Index</h1>
-<h2>
-    @Model.PlayerBlack.name
-</h2>
-<div>
-    <h4>Board</h4>
-    <hr />
-    <dl class="row">
-    </dl>
-</div>
-<div>
+@{
+    if (IsWhite)
+    {
 
-    <table border="4" style=" margin-left: auto; margin-right: auto; ">
-        @{
-            for (int i = 8; i >= 1; i--)
-            {
-                <tr>
-                    <td style="height:45px; width:45px">
-                        @i
-                    </td>
-                    @{
-                        for (char m = 'A'; m <= 'H'; m++)
-                        {
-                            <td id="@(m)@(i)" style="height:50px; width:50px">
-
-
-
-                                @{
-                                    var p = board.GetPieceFrom(i, (proiect_sah.column)((int)m - 64));
-                                    if (p != null)
-                                    {
-
-                                        string numeImagine = p.pieceType + ((int)p.Color).ToString();
-                                        <span id="piesa" data-piesa="@p.pieceType">
-
-                                            <img src="~/Images/@(numeImagine).png" style="width : 50%" />
-
-                                        </span>
-                                    }
-                                }
-                            </td>
-                        }
-                    }
-                </tr>
-            }
-        }
-
-        <tr>
-            <td>
-            </td>
+        <h2>
+            @Model.PlayerBlack.name
+        </h2>
+        <div>
+            <h4>Board</h4>
+            <hr />
+            <dl class="row">
+            </dl>
+        </div>
+        <table border="4" style=" margin-left: auto; margin-right: auto; ">
             @{
-                for (char j = 'A'; j <= 'H'; j++)
+                for (int i = 8; i >= 1; i--)
                 {
-                    <td>
-                        @j
-                    </td>
+                    <tr>
+                        <td style="height:45px; width:45px">
+                            @i
+                        </td>
+                        @{
+                            for (char m = 'A'; m <= 'H'; m++)
+                            {
+                                <td id="@(m)@(i)" style="height:50px; width:50px">
+
+
+
+                                    @{
+                                        var p = board.GetPieceFrom(i, (proiect_sah.column)((int)m - 64));
+                                        if (p != null)
+                                        {
+
+                                            string numeImagine = p.pieceType + ((int)p.Color).ToString();
+                                            <span id="piesa" data-piesa="@p.pieceType">
+
+                                                <img src="~/Images/@(numeImagine).png" style="width : 50%" />
+
+                                            </span>
+                                        }
+                                    }
+                                </td>
+                            }
+                        }
+                    </tr>
                 }
-
             }
-        </tr>
 
-    </table>
-    <h2>
-        @Model.PlayerWhite.name
+            <tr>
+                <td>
+                </td>
+                @{
+                    for (char j = 'A'; j <= 'H'; j++)
+                    {
+                        <td>
+                            @j
+                        </td>
+                    }
 
-    </h2>
-    <div>
-        Introdu mutarea : ex D2 D4
-        <p>
+                }
+            </tr>
 
-        </p>
-        <input id="AllMoveWhite" value="D2 D4" />
-        <button onclick="javascript:MoveWhite()">
-            Fin move
-        </button>
-    </div>
+        </table>
+        <h2>
+            @Model.PlayerWhite.name
+
+        </h2>
+    }
+    else
+    {
+
+
+        <h2>
+            @Model.PlayerWhite.name
+        </h2>
+        <div>
+            <h4>Board</h4>
+            <hr />
+            <dl class="row">
+            </dl>
+        </div>
+        <table border="4" style=" margin-left: auto; margin-right: auto; ">
+            @{
+                for (int i = 1; i <= 8; i++)
+                {
+                    <tr>
+                        <td style="height:45px; width:45px">
+                            @i
+                        </td>
+                        @{
+                            for (char m = 'H'; m >= 'A'; m--)
+                            {
+                                <td id="@(m)@(i)" style="height:50px; width:50px">
+
+
+
+                                    @{
+                                        var p = board.GetPieceFrom(i, (proiect_sah.column)((int)m - 64));
+                                        if (p != null)
+                                        {
+
+                                            string numeImagine = p.pieceType + ((int)p.Color).ToString();
+                                            <span id="piesa" data-piesa="@p.pieceType">
+
+                                                <img src="~/Images/@(numeImagine).png" style="width : 50%" />
+
+                                            </span>
+                                        }
+                                    }
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+
+            <tr>
+                <td>
+                </td>
+                @{
+                    for (char j = 'H'; j >= 'A'; j--)
+                    {
+                        <td>
+                            @j
+                        </td>
+                    }
+
+                }
+            </tr>
+
+        </table>
+        <h2>
+            @Model.PlayerBlack.name
+
+        </h2>
+
+    }
+}
+<div>
+    Introdu mutarea : ex D2 D4
+    <p>
+
+    </p>
+    <input id="AllMoveWhite" value="D2 D4" />
+    <button onclick="javascript:MoveWhite()">
+        Fin move
+    </button>
 </div>
+
+
 <script>
     function MoveWhite() {
         var moveplayer = document.getElementById("AllMoveWhite").value;
