@@ -21,6 +21,7 @@ namespace proiect_sah
 
     public class Board
     {
+        public event EventHandler<Color> PieceHasMoved;
         public Piece GetPieceFromPromotion(char pl, Color c)
         {
             switch (pl)
@@ -407,7 +408,9 @@ namespace proiect_sah
                     var promoted = GetPieceFromPromotion(pl, currpiece.Color);
                     table[pozi_final, (int)pozj_final] =(PieceType)((int)promoted.Color *(int)promoted.pieceType);
                 }
-                
+
+                if (PieceHasMoved != null)
+                    PieceHasMoved(this, currpiece.Color);
                 return;
             }
             

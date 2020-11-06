@@ -153,15 +153,25 @@
     <p>
 
     </p>
+
+    <h2>
+        @{ 
+            string disabled = "disabled='disabled'";
+            if((Model.WhoShouldMove == proiect_sah.Color.White && IsWhite) || (Model.WhoShouldMove == proiect_sah.Color.Black && !IsWhite))
+            {
+                disabled = "";
+            }
+        }
+    </h2>
     <input id="AllMoveWhite" value="D2 D4" />
-    <button onclick="javascript:MoveWhite()">
+    <button onclick="javascript:MoveGeneric()" @disabled>
         Fin move
     </button>
 </div>
 
 
 <script>
-    function MoveWhite() {
+    function MoveGeneric() {
         var moveplayer = document.getElementById("AllMoveWhite").value;
         var arr = moveplayer.split(' ');
         var oldparent = document.getElementById(arr[0]);
