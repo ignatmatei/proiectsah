@@ -162,6 +162,12 @@
             {
                 disabled = "";
             }
+            if(disabled == "disabled='disabled'")
+            {
+                <script>
+                    setTimeout(function () { window.location = window.location; }, 1000);
+                </script>
+            }
         }
     </h2>
     <input id="AllMoveWhite" value="D2 D4" />
