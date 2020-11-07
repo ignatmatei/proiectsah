@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proiect_sah", "proiect_sah\proiect_sah.csproj", "{B02BF678-47EA-4D7D-9766-0D792B2F5EFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_tabla", "test_tabla\test_tabla.csproj", "{D25BEE3F-482D-4FF6-9370-F8BC7309303A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test_tabla", "test_tabla\test_tabla.csproj", "{D25BEE3F-482D-4FF6-9370-F8BC7309303A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sah", "sah\sah.csproj", "{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sah", "sah\sah.csproj", "{323D723C-0591-4B1F-A7C4-5438A1B4FBBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sah_web", "sah_web\sah_web.csproj", "{18E02016-27B8-4F8B-AC1B-64A7114D1BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sah_web", "sah_web\sah_web.csproj", "{18E02016-27B8-4F8B-AC1B-64A7114D1BE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

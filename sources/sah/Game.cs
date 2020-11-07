@@ -15,7 +15,7 @@ namespace sah
             board = new Board();
             WhoShouldMove = Color.White;
             board.PieceHasMoved += Board_PieceHasMoved;
-
+            ID = Guid.NewGuid().ToString();
         }
 
         private void Board_PieceHasMoved(object sender, Color e)
@@ -23,7 +23,7 @@ namespace sah
             WhoShouldMove = (Color)(-1 * (int)e);
         }
 
-
+        public string ID { get; private set;  }
         public Color WhoShouldMove;
         public Player PlayerWhite;
         public Player PlayerBlack;

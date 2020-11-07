@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.Xml;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +16,7 @@ using sah_web.Models;
 
 namespace sah_web.Controllers
 {
-    
+    [Authorize]
     public class HomeController : Controller
     {
         public bool NewGame()
@@ -32,11 +34,11 @@ namespace sah_web.Controllers
         {
             _logger = logger;
         }
-        [Authorize]
+                       
         public IActionResult Index()
         {
-       
 
+            return View("MainPage");
             G.PlayerWhite.color = Color.White;
             G.PlayerBlack.color = Color.Black;
             if (G.PlayerWhite.name == null) G.PlayerWhite.name = User.Claims.First().Value;
@@ -62,8 +64,21 @@ namespace sah_web.Controllers
             return false;
        
         }
+        [HttpPost]
+        public IActionResult Index(string ChallengeName)
+        {
+            int i;
+            for (i = 0; i < AccountController.Usernames.Count; i++)
+            {
+                if(AccountController.Usernames[i] == ChallengeName)
+                {
+                    return Content("Am gasit " + ChallengeName);
+                }
+            }
+            return Content("User Invalid " + ChallengeName);
+        }
 
-        public IActionResult Privacy()
+            public IActionResult Privacy()
         {
             return View();
         }

@@ -11,6 +11,12 @@ namespace sah_web.Controllers
 {
     public class AccountController : Controller
     {
+        public static List<string> Usernames;
+         static  AccountController()
+        {
+            Usernames = new List<string>();
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -20,12 +26,13 @@ namespace sah_web.Controllers
         [HttpPost]
         public async Task < IActionResult> Login(string username)
         {
+
             if(string.IsNullOrWhiteSpace(username))
             {
                 //return Content("A");
                 return View();
             }
-
+            Usernames.Add(username);
 
             var claims = new List<Claim>
 {
