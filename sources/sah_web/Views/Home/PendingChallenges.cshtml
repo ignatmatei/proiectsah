@@ -1,0 +1,16 @@
+﻿@model List<sah_web.Classes.Challenges>
+
+<h1>
+    Your pending challenges are:
+</h1>
+@foreach (var challenge in Model)
+{
+  <h2>
+   @challenge.Challenger
+  </h2>
+  <button type ="submit" style=" color:red">Reject
+      </button>
+  <button type ="submit" style = "color:forestgreen">
+      Accept
+  </button>
+}

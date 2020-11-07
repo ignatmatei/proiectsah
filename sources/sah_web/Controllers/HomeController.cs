@@ -94,6 +94,14 @@ namespace sah_web.Controllers
             }
             return Content("User Invalid " + ChallengeName);
         }
+        public IActionResult PendingChallenges()
+        {
+            var challengeUser = AllChallenges
+                .Where(it => it.Challengee == User.Claims.First().Value)
+                .ToList();
+
+            return View(challengeUser);
+        }
         public IActionResult WaitingForAccept()
         {
             return View();
