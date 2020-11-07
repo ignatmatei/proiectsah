@@ -90,7 +90,7 @@ namespace sah_web.Controllers
         public IActionResult PendingChallenges()
         {
             var challengeUser = AllChallenges
-                .Where(it => it.Challengee == User.Claims.First().Value)
+                .Where(it => it.Challengee == User.Claims.First().Value && it.State == ChallengeState.Starting)
                 .ToList();
 
             return View(challengeUser);
@@ -100,6 +100,14 @@ namespace sah_web.Controllers
         {
             if (state == "accept")
             {
+                foreach (var searchChallenge in AllChallenges)
+                {
+                    if(searchChallenge.Challenger == challenger)
+                    {
+                        searchChallenge.State = ChallengeState.Acepted;
+                        break;
+                    }
+                }
                 return RedirectToAction("StartGame", new { challenger = challenger, challengee = User.Claims.First().Value });
             }
             if (state == "reject")
@@ -108,7 +116,7 @@ namespace sah_web.Controllers
                 {
                     if (searchchallenge.Challenger == challenger)
                     {
-                        AllChallenges.Remove(searchchallenge);
+                        searchchallenge.State = ChallengeState.Rejected;
                         break;
                     }
 
@@ -124,6 +132,20 @@ namespace sah_web.Controllers
         }
          public IActionResult WaitingForAccept()
         {
+            foreach (var maicautamodata in AllChallenges)
+            {
+                if(maicautamodata.Challenger == User.Claims.First().Value)
+                {
+                    switch (maicautamodata.State)
+                    {
+                        case ChallengeState.Starting: break;
+                        case ChallengeState.Acepted: 
+                            return RedirectToAction("StartGame", new { challenger = User.Claims.First().Value, challengee = maicautamodata.Challengee });
+                        case ChallengeState.Rejected:
+                            return RedirectToAction("Index");
+                    }
+                }
+            }
             return View();   
         }
         public IActionResult StartGame(string challenger, string challengee)
