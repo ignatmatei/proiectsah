@@ -102,6 +102,11 @@ namespace sah_web.Controllers
 
             return View(challengeUser);
         }
+        [HttpPost]
+        public IActionResult PendingChallenges(string challenger , string state)
+        {
+            return Content("Am primit challenger " + challenger + " si state " + state);
+        }
         public IActionResult WaitingForAccept()
         {
             return View();

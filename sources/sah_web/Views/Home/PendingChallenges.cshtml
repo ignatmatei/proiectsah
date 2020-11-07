@@ -5,12 +5,21 @@
 </h1>
 @foreach (var challenge in Model)
 {
-  <h2>
-   @challenge.Challenger
-  </h2>
-  <button type ="submit" style=" color:red">Reject
-      </button>
-  <button type ="submit" style = "color:forestgreen">
-      Accept
-  </button>
-}
+    <h2>
+        @challenge.Challenger
+    </h2>
+    <form method="post">
+        <input  type ="hidden" id="challenger" name="challenger" value="@challenge.Challenger" />
+        <input  type  ="hidden" id="state" name="state" value="accept" />
+        <button type="submit" style=" color:red">
+            Reject
+        </button>
+    </form>
+    <form method="post">
+        <input type ="hidden" id="challenger" name="challenger" value="@challenge.Challenger" />
+        <input type ="hidden" id="state" name="state" value="reject" />
+        <button type="submit" style="color:forestgreen">
+            Accept
+        </button>
+    </form>
+        }
