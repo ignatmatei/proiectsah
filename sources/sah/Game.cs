@@ -16,6 +16,7 @@ namespace sah
             WhoShouldMove = Color.White;
             board.PieceHasMoved += Board_PieceHasMoved;
             ID = Guid.NewGuid().ToString();
+            IsCompleted = false;
         }
 
         private void Board_PieceHasMoved(object sender, Color e)
@@ -29,5 +30,6 @@ namespace sah
         public Player PlayerBlack;
         public Board board;
         public List<Mutare> mutari;
+        public bool IsCompleted;
     }
 }

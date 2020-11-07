@@ -6,7 +6,9 @@
     if (User.Claims.First().Value == Model.PlayerWhite.name)
     {
         IsWhite = true;
+        
     }
+    var IDGame = Model.ID;
 }
 
 <h1>Index</h1>
@@ -180,7 +182,7 @@
 
         window.alert(moveplayer);
         console.log(arr);
-        var urlValid = '/Home/IsValid?first=' + arr[0] + '&last=' + arr[1];
+        var urlValid = '/Home/IsValid?first=' + arr[0] + '&last=' + arr[1] ;
         var last = arr[1].charAt(1);
 
         if (last == '1' || last == '8') {

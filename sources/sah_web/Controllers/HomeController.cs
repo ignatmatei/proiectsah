@@ -21,16 +21,14 @@ namespace sah_web.Controllers
     public class HomeController : Controller
     {
         public static List<Challenges> AllChallenges;
+        public static List<Game> AllGamesPlayed;
         static  HomeController()
         {
             AllChallenges = new List<Challenges>();
+            AllGamesPlayed = new List<Game>();
         }
-        public bool NewGame()
-        {
-            G = new Game();
-            return true;
-        }
-        static Game G = new Game();
+        
+
         /// <summary>
         /// g = new game
         /// </summary>
@@ -53,13 +51,22 @@ namespace sah_web.Controllers
            
         }
         //https://localhost:5001/Home/IsValid?first=e2&last=e4
-        public bool IsValid(string first, string last , char pl =' ')
+        public bool IsValid(string first, string last , string IDGame , char pl =' ')
         {
           var coloanainit = Enum.Parse<column>(first.Substring(0, 1), true);
           var linieinit = int.Parse(first.Substring(1, 1));
           var coloanafin = Enum.Parse<column>(last.Substring(0, 1), true);
           var liniefin = int.Parse(last.Substring(1, 1));
-          
+            Game G = null;
+           foreach (Game gG in AllGamesPlayed)
+            {
+                if(gG.ID == IDGame)
+                {
+                    G = gG;
+                    break;
+                }
+
+            }
             if (G.board.IsLegal(linieinit, coloanainit, liniefin, coloanafin))
             {
                 G.board.MovePiece(linieinit, coloanainit, liniefin, coloanafin, pl);
@@ -105,6 +112,10 @@ namespace sah_web.Controllers
                     if(searchChallenge.Challenger == challenger)
                     {
                         searchChallenge.State = ChallengeState.Acepted;
+                        Game G = new Game();
+                        G.PlayerWhite.name = User.Claims.First().Value;
+                        G.PlayerBlack.name = challenger;
+                        AllGamesPlayed.Add(G);
                         break;
                     }
                 }
@@ -150,6 +161,15 @@ namespace sah_web.Controllers
         }
         public IActionResult StartGame(string challenger, string challengee)
         {
+            Game G = null;
+            foreach (Game gG in AllGamesPlayed)
+            {
+                if ((gG.IsCompleted == false) && (gG.PlayerWhite.name == challengee && gG.PlayerBlack.name == challenger))
+                 {
+                    G = gG;
+                    break;
+                }
+            }
             G.PlayerWhite.color = Color.White;
             G.PlayerBlack.color = Color.Black;
             if (G.PlayerWhite.name == null) G.PlayerWhite.name = User.Claims.First().Value;
