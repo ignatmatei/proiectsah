@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using proiect_sah;
 using sah;
+using sah_web.Classes;
 using sah_web.Models;
 
 namespace sah_web.Controllers
@@ -19,6 +20,11 @@ namespace sah_web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        public static List<Challenges> AllChallenges;
+        static  HomeController()
+        {
+            AllChallenges = new List<Challenges>();
+        }
         public bool NewGame()
         {
             G = new Game();
@@ -37,7 +43,12 @@ namespace sah_web.Controllers
                        
         public IActionResult Index()
         {
-
+            string UserName = User.Claims.First().Value;
+            var exists = AccountController.Usernames.FirstOrDefault(it => it == UserName);
+            if(exists == null)
+            {
+                AccountController.Usernames.Add(UserName);
+            }
             return View("MainPage");
             G.PlayerWhite.color = Color.White;
             G.PlayerBlack.color = Color.Black;
@@ -72,10 +83,20 @@ namespace sah_web.Controllers
             {
                 if(AccountController.Usernames[i] == ChallengeName)
                 {
-                    return Content("Am gasit " + ChallengeName);
+                    var newChallenge = new Challenges();
+                    newChallenge.State = ChallengeState.Starting;
+                    newChallenge.Challenger = User.Claims.First().Value;
+                    newChallenge.Challengee = ChallengeName;
+                    AllChallenges.Add(newChallenge);
+                    return RedirectToAction("WaitingForAccept");
+                   // return Content("Am gasit " + ChallengeName);
                 }
             }
             return Content("User Invalid " + ChallengeName);
+        }
+        public IActionResult WaitingForAccept()
+        {
+            return View();
         }
 
             public IActionResult Privacy()
