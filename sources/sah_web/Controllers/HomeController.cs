@@ -50,14 +50,7 @@ namespace sah_web.Controllers
                 AccountController.Usernames.Add(UserName);
             }
             return View("MainPage");
-            G.PlayerWhite.color = Color.White;
-            G.PlayerBlack.color = Color.Black;
-            if (G.PlayerWhite.name == null) G.PlayerWhite.name = User.Claims.First().Value;
-            else
-            {
-                if (G.PlayerBlack.name == null) G.PlayerBlack.name = User.Claims.First().Value;
-            }
-            return View(G);
+           
         }
         //https://localhost:5001/Home/IsValid?first=e2&last=e4
         public bool IsValid(string first, string last , char pl =' ')
@@ -103,15 +96,47 @@ namespace sah_web.Controllers
             return View(challengeUser);
         }
         [HttpPost]
-        public IActionResult PendingChallenges(string challenger , string state)
+        public IActionResult PendingChallenges(string challenger, string state)
         {
-            return Content("Am primit challenger " + challenger + " si state " + state);
-        }
-        public IActionResult WaitingForAccept()
-        {
-            return View();
-        }
+            if (state == "accept")
+            {
+                return RedirectToAction("StartGame", new { challenger = challenger, challengee = User.Claims.First().Value });
+            }
+            if (state == "reject")
+            {
+                foreach (var searchchallenge in AllChallenges)
+                {
+                    if (searchchallenge.Challenger == challenger)
+                    {
+                        AllChallenges.Remove(searchchallenge);
+                        break;
+                    }
 
+                }
+                
+            }
+            var challengeUser = AllChallenges
+                    .Where(it => it.Challengee == User.Claims.First().Value)
+                    .ToList();
+
+            return View(challengeUser);
+            //return Content("Am primit challenger " + challenger + " si state " + state);
+        }
+         public IActionResult WaitingForAccept()
+        {
+            return View();   
+        }
+        public IActionResult StartGame(string challenger, string challengee)
+        {
+            G.PlayerWhite.color = Color.White;
+            G.PlayerBlack.color = Color.Black;
+            if (G.PlayerWhite.name == null) G.PlayerWhite.name = User.Claims.First().Value;
+            else
+            {
+                if (G.PlayerBlack.name == null) G.PlayerBlack.name = User.Claims.First().Value;
+            }
+            return View(G);
+        }
             public IActionResult Privacy()
         {
             return View();
