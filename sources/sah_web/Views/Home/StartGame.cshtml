@@ -7,7 +7,7 @@
     {
         IsWhite = true;
     }
-   string IDGame = Model.ID;
+    string IDGame = Model.ID;
 }
 
 <h1>Index</h1>
@@ -162,7 +162,7 @@
             {
                 disabled = "";
             }
-            if(disabled == "disabled='disabled'")
+            if (disabled == "disabled='disabled'")
             {
                 <script>
                     setTimeout(function () { window.location = window.location; }, 1000);
@@ -219,5 +219,16 @@
 
             }
         });
+    }
+</script>
+<p>
+
+</p>
+<button style="color:red" onclick="EndGame">
+    Resign
+</button>
+<script>
+    function EndGame{
+        @Model.IsCompleted= true;
     }
 </script>
