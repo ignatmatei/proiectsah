@@ -119,7 +119,7 @@ namespace sah_web.Controllers
                         break;
                     }
                 }
-                return RedirectToAction("StartGame", new { challenger = challenger, challengee = User.Claims.First().Value });
+                return RedirectToAction("StartGame", new {challenger = challenger, challengee = User.Claims.First().Value });
             }
             if (state == "reject")
             {

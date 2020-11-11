@@ -53,10 +53,10 @@
                                         }
                                     }
                                 </td>
-                            }
+                                        }
                         }
                     </tr>
-                }
+                                        }
             }
 
             <tr>
@@ -78,9 +78,9 @@
             @Model.PlayerWhite.name
 
         </h2>
-    }
-    else
-    {
+                    }
+                    else
+                    {
 
 
         <h2>
@@ -121,10 +121,10 @@
                                         }
                                     }
                                 </td>
-                            }
+                                        }
                         }
                     </tr>
-                }
+                                        }
             }
 
             <tr>
@@ -147,7 +147,7 @@
 
         </h2>
 
-    }
+                    }
 }
 <div>
     Introdu mutarea : ex D2 D4
@@ -224,11 +224,15 @@
 <p>
 
 </p>
-<button style="color:red" onclick="EndGame">
+<button style="color:red" onclick="EndGame()">
     Resign
 </button>
 <script>
-    function EndGame{
-        @Model.IsCompleted= true;
+    function EndGame(){
+
+        alert("boris " + "@Model.IsCompleted");
+        @{
+        }
+        alert("boris " + "@Model.IsCompleted");
     }
 </script>
