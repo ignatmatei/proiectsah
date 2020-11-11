@@ -230,9 +230,10 @@
 <script>
     function EndGame(){
 
-        alert("boris " + "@Model.IsCompleted");
+        alert("boris " + "@Model.x");
         @{
+            Model.x=100;
         }
-        alert("boris " + "@Model.IsCompleted");
+        alert("boris " + "@Model.x");
     }
 </script>

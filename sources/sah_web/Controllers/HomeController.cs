@@ -105,6 +105,7 @@ namespace sah_web.Controllers
         [HttpPost]
         public IActionResult PendingChallenges(string challenger, string state)
         {
+            Game G = new Game();
             if (state == "accept")
             {
                 foreach (var searchChallenge in AllChallenges)
@@ -112,14 +113,14 @@ namespace sah_web.Controllers
                     if(searchChallenge.Challenger == challenger)
                     {
                         searchChallenge.State = ChallengeState.Acepted;
-                        Game G = new Game();
+                       
                         G.PlayerWhite.name = User.Claims.First().Value;
                         G.PlayerBlack.name = challenger;
                         AllGamesPlayed.Add(G);
                         break;
                     }
                 }
-                return RedirectToAction("StartGame", new {challenger = challenger, challengee = User.Claims.First().Value });
+                return RedirectToAction("StartGame", new {IDGame = G.ID});
             }
             if (state == "reject")
             {
@@ -150,8 +151,22 @@ namespace sah_web.Controllers
                     switch (maicautamodata.State)
                     {
                         case ChallengeState.Starting: break;
-                        case ChallengeState.Acepted: 
-                            return RedirectToAction("StartGame", new { challenger = User.Claims.First().Value, challengee = maicautamodata.Challengee });
+                        case ChallengeState.Acepted:
+                           
+                                Game GameFound = null;
+                                foreach (Game gG in AllGamesPlayed)
+                                {
+                                    if (gG.IsCompleted)
+                                        continue;
+                                    if (maicautamodata.Challengee != gG.PlayerWhite.name)
+                                        continue;
+                                    if (maicautamodata.Challenger != gG.PlayerBlack.name)
+                                        continue;
+                                    GameFound = gG;
+                                    break;
+                                }
+                          
+                            return RedirectToAction("StartGame", new { IDGame = GameFound.ID});
                         case ChallengeState.Rejected:
                             return RedirectToAction("Index");
                     }
@@ -159,12 +174,12 @@ namespace sah_web.Controllers
             }
             return View();   
         }
-        public IActionResult StartGame(string challenger, string challengee)
+        public IActionResult StartGame(string IDGame)
         {
             Game G = null;
             foreach (Game gG in AllGamesPlayed)
             {
-                if ((gG.IsCompleted == false) && (gG.PlayerWhite.name == challengee && gG.PlayerBlack.name == challenger))
+                if (gG.ID == IDGame)
                  {
                     G = gG;
                     break;
